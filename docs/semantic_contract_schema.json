@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qcircuiteval.local/schemas/semantic-contract-v1.json",
+  "title": "QCircuitEval semantic contract v1 (core)",
+  "description": "Field reference for packaged core contracts with schema_version \"1\". Packaged QEC contracts use schema_version \"2\"; the Python ContractRegistry validator is authoritative for both suites.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "suite",
+    "task_id",
+    "contract_version",
+    "kind",
+    "shadow_only",
+    "audit_status",
+    "signature",
+    "systems",
+    "observation",
+    "phase",
+    "ancillas",
+    "parameters",
+    "approximation",
+    "target",
+    "routing",
+    "limits",
+    "requirements",
+    "diagnostics"
+  ],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "suite": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "pattern": "^[0-9A-Za-z_.:-]+$" },
+    "contract_version": { "type": "string", "minLength": 1 },
+    "kind": {
+      "enum": [
+        "state",
+        "total_unitary",
+        "isometry",
+        "channel",
+        "instrument",
+        "distribution",
+        "classical_io",
+        "objective"
+      ]
+    },
+    "shadow_only": { "type": "boolean" },
+    "audit_status": { "enum": ["provisional", "reviewed", "blocked"] },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry_point", "arguments", "return_type"],
+      "properties": {
+        "entry_point": { "type": "string", "minLength": 1 },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "type", "domain", "required"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 },
+              "domain": { "type": "string", "minLength": 1 },
+              "required": { "type": "boolean" }
+            }
+          }
+        },
+        "return_type": { "type": "string", "minLength": 1 }
+      }
+    },
+    "systems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "kind", "role", "indices", "dimension"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "kind": { "enum": ["quantum", "classical"] },
+              "role": {
+                "enum": [
+                  "logical_input",
+                  "logical_output",
+                  "logical_io",
+                  "classical_input",
+                  "classical_output",
+                  "classical_io",
+                  "ancilla",
+                  "work",
+                  "environment"
+                ]
+              },
+              "indices": { "type": "array", "items": { "type": "integer", "minimum": 0 } },
+              "dimension": { "type": "integer", "minimum": 1 }
+            }
+          }
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quantum", "classical", "ignored", "marginalize", "bit_order", "postselection"],
+      "properties": {
+        "quantum": { "type": "array", "items": { "type": "string" } },
+        "classical": { "type": "array", "items": { "type": "string" } },
+        "ignored": { "type": "array", "items": { "type": "string" } },
+        "marginalize": { "type": "array", "items": { "type": "string" } },
+        "bit_order": { "enum": ["little_endian", "big_endian", "prompt", "not_applicable"] },
+        "postselection": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["system", "values", "min_probability"],
+              "properties": {
+                "system": { "type": "string" },
+                "values": { "type": "array", "items": { "type": "string" } },
+                "min_probability": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["global_phase_irrelevant", "relative_phase"],
+      "properties": {
+        "global_phase_irrelevant": { "type": "boolean" },
+        "relative_phase": { "enum": ["preserve", "unconstrained", "not_applicable"] }
+      }
+    },
+    "ancillas": { "$ref": "#/$defs/namedPolicyList" },
+    "parameters": { "type": "object" },
+    "approximation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "metric", "tolerance", "uncertainty", "error_budget"],
+      "properties": {
+        "mode": { "enum": ["exact", "approximate"] },
+        "metric": { "type": "string", "minLength": 1 },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "uncertainty": { "type": "number", "minimum": 0 },
+        "error_budget": { "type": "number", "minimum": 0 }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "sha256", "source", "manifest", "independent_derivations"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "source": { "type": "string", "minLength": 1 },
+        "manifest": { "type": "string", "minLength": 1 },
+        "independent_derivations": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "fallback"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/routes" },
+        "fallback": { "$ref": "#/$defs/routes" }
+      }
+    },
+    "limits": { "type": "object" },
+    "requirements": { "type": "array" },
+    "diagnostics": { "type": "array" }
+  },
+  "$defs": {
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["engine", "capabilities", "cross_check"],
+        "properties": {
+          "engine": { "type": "string", "minLength": 1 },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "cross_check": { "type": "boolean" }
+        }
+      }
+    },
+    "namedPolicyList": {
+      "type": "object",
+      "required": ["items"],
+      "properties": { "items": { "type": "array" } },
+      "additionalProperties": false
+    }
+  }
+}

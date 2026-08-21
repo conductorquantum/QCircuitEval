@@ -1,0 +1,2405 @@
+{
+  "schema_version": "1",
+  "suite": "core",
+  "tasks": {
+    "01": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "e9a3111d4dbc4a9bd806b0862ba41db8a8f5666693a52c2d16ac250969066f17",
+      "derivations": [
+        {
+          "evidence": "One Grover iteration for N=4 and the single marked item |00> has unit success probability.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The marked-state amplitude is sin(3*asin(1/2))=1 and all unmarked amplitudes vanish.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The marked-state amplitude is sin(3*asin(1/2))=1 and all unmarked amplitudes vanish."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-01-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "01"
+    },
+    "02": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "sparse_exact_state_v1",
+      "artifact_sha256": "3a1fba4d417a6b0710cecf8d6ed21e6ee55b30f6d833703a023f5cfc6b550431",
+      "derivations": [
+        {
+          "evidence": "The two orthogonal amplitudes have squared magnitudes 1/2 and a relative phase of pi.",
+          "id": "prompt-amplitudes",
+          "method": "closed_form",
+          "narrative": "Place +1/sqrt(2) and -1/sqrt(2) at integer basis indices 3 and 4, respectively."
+        },
+        {
+          "evidence": "Executable tests check normalization, support, and the negative all-qubit bit-flip relation.",
+          "id": "stabilizer-relations",
+          "method": "independent_invariants",
+          "narrative": "Identify the unique normalized state in span{|011>,|100>} stabilized by -X0X1X2 and the corresponding parity constraints."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "exactly two nonzero amplitudes",
+        "unit norm",
+        "relative phase between |011> and |100> is pi"
+      ],
+      "known_ambiguities": [],
+      "normalization": "Unit L2 norm; global phase ignored and relative minus sign preserved.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Prompt equation sqrt(1/2) * (|011> - |100>) in normalized q2q1q0 order.",
+      "suite": "core",
+      "target_id": "core-02-signed-state",
+      "target_version": "1.0.0",
+      "task_id": "02"
+    },
+    "03": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "82df78eb87d7610cdf8bf50121674989886d7b1263bb943249f3898441f8c3d9",
+      "derivations": [
+        {
+          "evidence": "Exhaustive evaluation of the six CNF clauses leaves exactly assignments 010 and 110.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "With two marked items among eight, one Grover iteration maps all probability uniformly onto the marked subspace.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "With two marked items among eight, one Grover iteration maps all probability uniformly onto the marked subspace."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-03-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "03"
+    },
+    "04": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "b676e38b6ac1daf1ae3ccbd24ad2a72ca9c519925e6a82ad06a4223aac88881b",
+      "derivations": [
+        {
+          "evidence": "Apply five alternating MaxCut cost and X-mixer layers to |+>^5 for the supplied parameter vectors.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "At all-zero parameters the family reduces exactly to |+>^5; derivatives match the declared cost and mixer generators.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        32
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "At all-zero parameters the family reduces exactly to |+>^5; derivatives match the declared cost and mixer generators."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-04-qaoa-state-family",
+      "target_version": "1.0.0",
+      "task_id": "04"
+    },
+    "05": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "357383e8238e65ccccd3c2ad3aaa25774dd3236bacdffc56abfd6929cb04fc4c",
+      "derivations": [
+        {
+          "evidence": "Enumerate every feasible knapsack assignment for the declared instance; the accepted distribution is the point mass on the optimal assignment 10001 in q4..q0 order.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Dynamic programming over all 32 assignments confirms the unique optimum picks items 0 and 4 with value 8 at weight 7.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        32
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Dynamic programming over all 32 assignments confirms the unique optimum picks items 0 and 4 with value 8 at weight 7."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-05-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "05"
+    },
+    "06": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "10287b8ec693d128e70380cdcb5970256cd612401e1eefafe2577fae6b427abf",
+      "derivations": [
+        {
+          "evidence": "The swap-test ancilla-zero probability is (1+state fidelity)/2, evaluated per declared witness state ry(theta) then rz(phi) applied to |0>.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The formula gives one for |0>, one half for |1>, and is invariant under global phase. Replaying three declared witness states with distinct overlaps rejects any implementation that ignores unknown_state.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The formula gives one for |0>, one half for |1>, and is invariant under global phase. Replaying three declared witness states with distinct overlaps rejects any implementation that ignores unknown_state."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-06-swap-test-formula",
+      "target_version": "1.0.0",
+      "task_id": "06"
+    },
+    "07": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "7b63efd682ae2424fe16d6679ebdfe814fe287315c3787f6f4d688740f8be928",
+      "derivations": [
+        {
+          "evidence": "Two unequal basis-bit comparisons yield fair ancillas while the equal comparison yields zero.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Tensoring two Bernoulli(1/2) outcomes and one deterministic zero produces four equiprobable strings.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Tensoring two Bernoulli(1/2) outcomes and one deterministic zero produces four equiprobable strings."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-07-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "07"
+    },
+    "08": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "0a769d9a13d85b1bd0c16d74a4621ac89fd92c30296805eef4ed7e3e8fb4748f",
+      "derivations": [
+        {
+          "evidence": "Use the defining 64-point discrete Fourier transform matrix.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Every column has unit norm, distinct columns are orthogonal, and QFT^4 is identity under the pinned order.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        64,
+        64
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Every column has unit norm, distinct columns are orthogonal, and QFT^4 is identity under the pinned order."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-08-fourier-operator",
+      "target_version": "1.0.0",
+      "task_id": "08"
+    },
+    "09": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "fd9f6d306921aebc84b954145d7f473adebf098ae3c626de483bb5c389428b7c",
+      "derivations": [
+        {
+          "evidence": "Input |0> is an equal superposition of the X eigenstates with phases zero and one half.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Three-bit QPE represents both eigenphases exactly, so no other counting outcome has support.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Three-bit QPE represents both eigenphases exactly, so no other counting outcome has support."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-09-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "09"
+    },
+    "10": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d7c973b5945b886d9da479b1db943359f9224aaf56f85c21524cb25cfa9cdab1",
+      "derivations": [
+        {
+          "evidence": "Solve the declared four-dimensional linear system and normalize A^-1 b on the success branch.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The target satisfies A|x> proportional to |b>; residual and normalization are checked independently.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The target satisfies A|x> proportional to |b>; residual and normalization are checked independently."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-10-postselected-linear-system-state",
+      "target_version": "1.0.0",
+      "task_id": "10"
+    },
+    "11": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "024ed51b7200b183b2d2c41ce307c4ddcd00ce5ef5f957e85af1b463b5f6262b",
+      "derivations": [
+        {
+          "evidence": "The phase-oracle Bernstein form of the balanced secret returns the pinned secret bitstring.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The zero string is excluded for every balanced linear oracle and the inverse bit-order legacy alias is not accepted.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The zero string is excluded for every balanced linear oracle and the inverse bit-order legacy alias is not accepted."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-11-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "11"
+    },
+    "12": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "0724dc9a9804d9614db2bf6d0f1f524e03f136b77cddb0db1bfe8186e6c5d0c0",
+      "derivations": [
+        {
+          "evidence": "A constant oracle leaves the Deutsch-Jozsa query register at zero after interference.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Both allowed constant-function phases have identical query-register probabilities.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Both allowed constant-function phases have identical query-register probabilities."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-12-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "12"
+    },
+    "13": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "dbce515464796292f19a97b74a6dfbca7d4e3627639542c026dbc7362d4ab23f",
+      "derivations": [
+        {
+          "evidence": "Enumerate the two-bit vectors orthogonal to hidden period 11 over GF(2).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The orthogonal subspace has dimension one and therefore two uniform outcomes.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The orthogonal subspace has dimension one and therefore two uniform outcomes."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-13-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "13"
+    },
+    "14": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "e8fad7cd322d7d7eb7a71410de728e6d03922d26dc1928376541ab97f81c5655",
+      "derivations": [
+        {
+          "evidence": "Enumerate the three-bit vectors orthogonal to hidden period 110 over GF(2).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The orthogonal subspace has dimension two and therefore four uniform outcomes.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The orthogonal subspace has dimension two and therefore four uniform outcomes."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-14-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "14"
+    },
+    "15": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "035a97312735c90c7c8337c2c937e798012ca3ffb668654e8bac9577bc3c6c99",
+      "derivations": [
+        {
+          "evidence": "Use p(0)=(1+Re <+|H|+>)/2 and <+|H|+>=1/sqrt(2).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Direct two-qubit amplitude expansion yields the same Bernoulli probabilities.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Direct two-qubit amplitude expansion yields the same Bernoulli probabilities."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-15-hadamard-test-distribution",
+      "target_version": "1.0.0",
+      "task_id": "15"
+    },
+    "16": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "ef625695fb029ee632a5899d22e1df0902e28187e5024492f6f7aacaca913f19",
+      "derivations": [
+        {
+          "evidence": "Use the conventional Bell state produced by H on q0 followed by CX q0->q1.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The state is the simultaneous +1 eigenstate of X tensor X and Z tensor Z.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The state is the simultaneous +1 eigenstate of X tensor X and Z tensor Z."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-16-sparse-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "16"
+    },
+    "17": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "8a97e5a8170d9603d5df450be743df286460241cc0c42e664ef61be0d0ebe9a5",
+      "derivations": [
+        {
+          "evidence": "Use the conventional three-qubit GHZ state with equal positive amplitudes.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The state is stabilized by XXX, ZZI, and IZZ.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The state is stabilized by XXX, ZZI, and IZZ."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-17-sparse-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "17"
+    },
+    "18": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "54e3d6e84c79adfddf1f2ba0837ce6649b2a6dc2222483becbff795c032a8d5d",
+      "derivations": [
+        {
+          "evidence": "Teleportation with complete Bell corrections implements the identity channel from Alice to Bob; the prompt requires the RX(pi/2) preparation inside the returned circuit, so the contracted Alice-to-Bob channel is the RX(pi/2) unitary channel.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Choi equality is cross-checked on the six Pauli eigenstates propagated through the required in-circuit RX(pi/2) preparation.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4,
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Choi equality is cross-checked on the six Pauli eigenstates propagated through the required in-circuit RX(pi/2) preparation."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-18-witness-unitary-channel",
+      "target_version": "1.0.0",
+      "task_id": "18"
+    },
+    "19": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "93e244c1a0c50f974b322247ce422438ae87c3dc0c76fc116c32ded096477efb",
+      "derivations": [
+        {
+          "evidence": "Place equal positive amplitudes on the two basis states named by the prompt.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The target is normalized and has +1 coherence between its two support states.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        32
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The target is normalized and has +1 coherence between its two support states."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-19-sparse-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "19"
+    },
+    "20": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d1291c3d3163ca7cf2c74455a032387ae4fc6976d53b74c3605c2224b1debb2f",
+      "derivations": [
+        {
+          "evidence": "The Bernstein-Vazirani interference pattern returns the hidden linear string exactly.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Oracle queries on the standard basis reproduce the dot product with 011 and pin bit order.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Oracle queries on the standard basis reproduce the dot product with 011 and pin bit order."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-20-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "20"
+    },
+    "21": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "9fc16e43a965dc56a41d16a7113be0333db32260f4297324cf4e82a5aa9ed233",
+      "derivations": [
+        {
+          "evidence": "Enumerate all eight inputs using the three output equations stated verbatim by meaning in the prompt.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The reversible CNOT/CNOT/Toffoli construction gives the same permutation on all basis states.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The reversible CNOT/CNOT/Toffoli construction gives the same permutation on all basis states."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-21-exhaustive-boolean-relation",
+      "target_version": "1.0.0",
+      "task_id": "21"
+    },
+    "22": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "995dd7b2ec4503726915cbd47042d2ed10f89f1c1c2c4b7da82ac355b0b4f776",
+      "derivations": [
+        {
+          "evidence": "Build the complete 128-row arithmetic truth relation with a four-bit carry result.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Integer addition and a ripple-carry recurrence agree on every input row.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Integer addition and a ripple-carry recurrence agree on every input row."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-22-reversible-addition-relation",
+      "target_version": "1.0.0",
+      "task_id": "22"
+    },
+    "23": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "abebafce3cdf9c6fa4d10064de7c479020936587e615139897b6cebf599fb1f0",
+      "derivations": [
+        {
+          "evidence": "Enumerate all eight minuends against the prompt-fixed subtrahend using modular subtraction.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Two's-complement addition and direct modular subtraction agree for every input.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Two's-complement addition and direct modular subtraction agree for every input."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-23-reversible-subtraction-relation",
+      "target_version": "1.0.0",
+      "task_id": "23"
+    },
+    "24": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "8ce39866cd899bd25834c0779b5b3d0d8fb11f6d870559ed1f031150c82b5917",
+      "derivations": [
+        {
+          "evidence": "Use the normalized equal-positive-amplitude single-excitation state.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The state has excitation number one with certainty and is invariant under every qubit permutation.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The state has excitation number one with certainty and is invariant under every qubit permutation."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-24-sparse-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "24"
+    },
+    "25": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "89ac48f132ee42a8e63345fb6dbaca8495f2929acdbaece9be41b4613c523dcb",
+      "derivations": [
+        {
+          "evidence": "For one marked item among four, the Grover angle is pi/6 and eigenphases are plus/minus one sixth of a turn.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Evaluate the three-bit QPE Dirichlet kernel and verify symmetry under phase conjugation.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Evaluate the three-bit QPE Dirichlet kernel and verify symmetry under phase conjugation."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-25-qpe-distribution",
+      "target_version": "1.0.0",
+      "task_id": "25"
+    },
+    "26": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "350b2802669f60b365cf7101118db9ca3db10dee5ac23bb258309f7694ebc05b",
+      "derivations": [
+        {
+          "evidence": "Expand GHZ3 and plus3, apply the three controlled swaps, and trace both data registers.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The all-zero ancilla marginal is consistent with the global overlap squared abs(<GHZ|+++>)^2=1/4.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The all-zero ancilla marginal is consistent with the global overlap squared abs(<GHZ|+++>)^2=1/4."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-26-exact-circuit-distribution",
+      "target_version": "1.0.0",
+      "task_id": "26"
+    },
+    "27": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "dense_exact_matrix_v1",
+      "artifact_sha256": "af4cca4b2f42a95752eb98c60623ee03ef104f46aa0d07bf7e07fd5f5cfa3144",
+      "derivations": [
+        {
+          "evidence": "The generated permutation exhausts all four computational-basis inputs.",
+          "id": "boolean-action",
+          "method": "exhaustive_truth_table",
+          "narrative": "For every basis integer x, toggle bit 1 exactly when bit 0 is one."
+        },
+        {
+          "evidence": "Executable tests independently multiply H(q1) CZ(q0,q1) H(q1) and compare the target up to global phase.",
+          "id": "h-cz-h-identity",
+          "method": "gate_identity",
+          "narrative": "Conjugating Z on target q1 by H transforms controlled-Z into controlled-X."
+        }
+      ],
+      "dimensions": [
+        4,
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "unitary permutation matrix",
+        "q0 is unchanged",
+        "q1 toggles iff q0 is one"
+      ],
+      "known_ambiguities": [],
+      "normalization": "Columns and rows use q1q0 computational-basis order; global phase is ignored.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Prompt requires CNOT with q0 as control and q1 as target, decomposed using H and CZ.",
+      "suite": "core",
+      "target_id": "core-27-cx-q0-q1",
+      "target_version": "1.0.0",
+      "task_id": "27"
+    },
+    "28": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "exhaustive_basis_isometry_v1",
+      "artifact_sha256": "cc3effa1bd0ed2d49b94c84022aaf9a6c6f08abf34368ac7e63fdac0ac5a649f",
+      "derivations": [
+        {
+          "evidence": "The artifact records every logical input, output, and physical clean-ancilla embedding.",
+          "id": "boolean-action",
+          "method": "exhaustive_truth_table",
+          "narrative": "Enumerate all 16 logical inputs and set q4' = q4 XOR (q0 AND q1 AND q2)."
+        },
+        {
+          "evidence": "Executable tests compare the three-Toffoli construction on all 32 basis states and select the q3=0 domain.",
+          "id": "compute-use-uncompute",
+          "method": "reversible_logic_identity",
+          "narrative": "Compute q0 AND q1 into q3, use q2 and q3 to toggle q4, then uncompute q3."
+        }
+      ],
+      "dimensions": [
+        32,
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "all 16 logical basis inputs are covered",
+        "q3 starts and ends in zero",
+        "controls are unchanged",
+        "q4 toggles iff all three controls are one"
+      ],
+      "known_ambiguities": [],
+      "normalization": "Logical basis q4q2q1q0 embeds into physical q4q3q2q1q0 with q3=0.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Prompt truth relation: q0,q1,q2 control target q4 while clean work qubit q3 is restored.",
+      "suite": "core",
+      "target_id": "core-28-cccnot-clean-ancilla",
+      "target_version": "1.0.0",
+      "task_id": "28"
+    },
+    "29": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "0a6aef7576fb0ae2b8774d983b8d462c95298988273e739ef57d78e842f77653",
+      "derivations": [
+        {
+          "evidence": "Evaluate the Bell-state correlations for all four declared measurement-setting pairs.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The correlators attain the CHSH magnitude 2*sqrt(2) with normalized non-signaling marginals.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The correlators attain the CHSH magnitude 2*sqrt(2) with normalized non-signaling marginals."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-29-chsh-conditional-distribution",
+      "target_version": "1.0.0",
+      "task_id": "29"
+    },
+    "30": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d9cd31b25fdc2e743b2735c76f384014befc0ecc9bff7c5aa871f0558cec3d6f",
+      "derivations": [
+        {
+          "evidence": "Enumerate the four Boolean OR inputs with a clean result qubit.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The reversible identity a OR b = a XOR b XOR (a AND b) matches the truth table.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The reversible identity a OR b = a XOR b XOR (a AND b) matches the truth table."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-30-exhaustive-boolean-relation",
+      "target_version": "1.0.0",
+      "task_id": "30"
+    },
+    "31": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "c616df767e8b7994e767877d41b2ca2b99e178c486621d23fbd0358251ff961a",
+      "derivations": [
+        {
+          "evidence": "The multiplicative order of 7 modulo 15 is four, yielding phase fractions k/4.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Direct modular powers 1,7,4,13 repeat after four and the four-bit inverse QFT represents every k/4 exactly.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Direct modular powers 1,7,4,13 repeat after four and the four-bit inverse QFT represents every k/4 exactly."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-31-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "31"
+    },
+    "32": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "08aa2dbb4eeac6c45b97d3aa6744d2b258d728f2ae43c1000bebb35a9800a68c",
+      "derivations": [
+        {
+          "evidence": "The order-four modular orbit produces four exact eight-bit phase peaks.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Continued fractions maps every nonzero peak to denominator four and the modular orbit closes after four.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        256
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Continued fractions maps every nonzero peak to denominator four and the modular orbit closes after four."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-32-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "32"
+    },
+    "33": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "851d7bc4a2fc29368afa84eb184b9dc997744d16834d9e31529c5141d0e34e8b",
+      "derivations": [
+        {
+          "evidence": "Two-bit phase estimation of S on |1> yields binary phase 0.01 exactly.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-33-phase-estimation-instrument",
+      "target_version": "1.0.0",
+      "task_id": "33"
+    },
+    "34": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "a74c6a4346976849b7f791aa0d72f6f41f2b15f7857fc335ceb5d098cbe62d75",
+      "derivations": [
+        {
+          "evidence": "Three-bit phase estimation of T on |1> yields binary phase 0.001 exactly.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-34-phase-estimation-instrument",
+      "target_version": "1.0.0",
+      "task_id": "34"
+    },
+    "35": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d766d7a5960a32c9e3a57e67238dad898e6bc6267cba0158f329e7c3c7c81ca5",
+      "derivations": [
+        {
+          "evidence": "Enumerate all eight three-bit inputs and compute odd parity.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Three CNOTs into a clean result bit reproduce the truth table and preserve every input.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Three CNOTs into a clean result bit reproduce the truth table and preserve every input."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-35-exhaustive-boolean-relation",
+      "target_version": "1.0.0",
+      "task_id": "35"
+    },
+    "36": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d935cfba6357eb7a8b61c6b9afbddccfe3c72c596a47a012c0182233b5def909",
+      "derivations": [
+        {
+          "evidence": "Apply the inverse of CX(q0,q1) H(q0) state preparation to Bell Phi+.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The inverse maps both Bell stabilizers to the computational |00> stabilizers.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The inverse maps both Bell stabilizers to the computational |00> stabilizers."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-36-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "36"
+    },
+    "37": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "792880239c9f540c71ff0e730c624f19e76fc6102151b60ba9baf6e3be008615",
+      "derivations": [
+        {
+          "evidence": "Form the block diagonal operator diag(I,H) in q1q0 order.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Exhaustive basis-column construction agrees with the projector formula |0><0| tensor I + |1><1| tensor H.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4,
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Exhaustive basis-column construction agrees with the projector formula |0><0| tensor I + |1><1| tensor H."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-37-controlled-operator",
+      "target_version": "1.0.0",
+      "task_id": "37"
+    },
+    "38": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "66074165a9801cdd28c5862f56f5b23ebb45f704a06f04618a2c42ed0c416429",
+      "derivations": [
+        {
+          "evidence": "Apply two declared ring-entangler plus RX/RZ/RX rotation layers with the deterministic default weights w[d][i][k]=(9d+3i+k+1)*pi/19 to |000>.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Independent dense matrix composition of the 24 declared operations reproduces the stored amplitudes to machine precision, and the state norm is exactly 1.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Independent dense matrix composition of the 24 declared operations reproduces the stored amplitudes to machine precision, and the state norm is exactly 1."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-38-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "38"
+    },
+    "39": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "cc5cce768508ba4e3b0458ebf08c11908b30a00d46daaf292414433288d90c86",
+      "derivations": [
+        {
+          "evidence": "Apply RX then RY to |0> for every pair of real angles.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Closed-form Bloch-vector rotation agrees with direct 2x2 matrix multiplication at a full-rank trigonometric design.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Closed-form Bloch-vector rotation agrees with direct 2x2 matrix multiplication at a full-rank trigonometric design."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-39-parameterized-state-family",
+      "target_version": "1.0.0",
+      "task_id": "39"
+    },
+    "40": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "47674fe24f702fb313ccb3d53f9edd0a4e2c88d865f3202ecf41990fc8d4bae5",
+      "derivations": [
+        {
+          "evidence": "Compose the eight prompt-ordered rotations and one CX on the declared initial state.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Symbolic matrix composition and basis-state propagation agree; zero parameters produce the expected entangled seed action.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Symbolic matrix composition and basis-state propagation agree; zero parameters produce the expected entangled seed action."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-40-parameterized-state-family",
+      "target_version": "1.0.0",
+      "task_id": "40"
+    },
+    "41": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "cc126489e1fe386493ea8d92d0ac01f66556e09473a1e6e0b1966d04a8d5fa0f",
+      "derivations": [
+        {
+          "evidence": "Apply the declared RZ,RY,RZ Euler rotations on each qubit of |00> for every real 6-vector param.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Closed-form per-qubit Euler rotations agree with direct 2x2 matrix products at a full-rank trigonometric design, and the product ansatz reaches the ZZ ground state |01> exactly.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Closed-form per-qubit Euler rotations agree with direct 2x2 matrix products at a full-rank trigonometric design, and the product ansatz reaches the ZZ ground state |01> exactly."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-41-parameterized-state-family",
+      "target_version": "1.0.0",
+      "task_id": "41"
+    },
+    "42": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "analytic_parameterized_matrix_v1",
+      "artifact_sha256": "d7be6c12a1dd0a2b716d805b30f52be7e81e1f5422e77a2a89beac242440b30c",
+      "derivations": [
+        {
+          "evidence": "The artifact stores the parameterized matrix without using any canonical circuit.",
+          "id": "closed-form-u",
+          "method": "analytic_matrix",
+          "narrative": "Write the four U-matrix entries directly from theta, phi, and lam."
+        },
+        {
+          "evidence": "Executable tests compare both derivations on boundary and irrational-looking points.",
+          "id": "zyz-euler",
+          "method": "independent_factorization",
+          "narrative": "Derive RZ(phi) RY(theta) RZ(lam), then multiply by exp(i(phi+lam)/2)."
+        }
+      ],
+      "dimensions": [
+        2,
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "unitary for all real theta, phi, and lam",
+        "determinant is exp(i(phi+lam))",
+        "equal up to global phase to the ZYZ Euler product"
+      ],
+      "known_ambiguities": [
+        "Finite parameter samples can refute but cannot prove the continuous family."
+      ],
+      "normalization": "Exact single-qubit operator family modulo global phase.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Standard U(theta,phi,lam) matrix over all real parameters, as named by the prompt.",
+      "suite": "core",
+      "target_id": "core-42-u-family",
+      "target_version": "1.0.0",
+      "task_id": "42"
+    },
+    "43": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "ef36f712202b0604372e55ce37979f6e18684e6c5b2654557fe0847932b6c46c",
+      "derivations": [
+        {
+          "evidence": "Construct the eight-dimensional permutation that toggles q2 iff q0=q1=1.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The standard H/CX/T decomposition and exhaustive truth table agree up to global phase.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8,
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The standard H/CX/T decomposition and exhaustive truth table agree up to global phase."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-43-controlled-controlled-operator",
+      "target_version": "1.0.0",
+      "task_id": "43"
+    },
+    "44": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "264c2b4d8c74719e05c93b05260e52eab37374787dd1e14b0d158599b234e7e0",
+      "derivations": [
+        {
+          "evidence": "Use the four-row CX truth table in pinned q1q0 order.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "H(target) CZ H(target) produces the same operator and proves an entangling Clifford primitive is necessary.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4,
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "H(target) CZ H(target) produces the same operator and proves an entangling Clifford primitive is necessary."
+      ],
+      "known_ambiguities": [
+        "Literal single-qubit-only local Cliffords cannot implement an entangling CX."
+      ],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-44-controlled-operator",
+      "target_version": "1.0.0",
+      "task_id": "44"
+    },
+    "45": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "cfa1f2a0526b8211aa5b494ebd68ed951620021887361909ddfcb3219bfa1a85",
+      "derivations": [
+        {
+          "evidence": "Apply the prompt-specified diagonal oracle and diffuser to the uniform three-qubit state.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Independent amplitude-amplification geometry with marked fraction 1/4 matches direct matrix propagation.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Independent amplitude-amplification geometry with marked fraction 1/4 matches direct matrix propagation."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-45-exact-circuit-distribution",
+      "target_version": "1.0.0",
+      "task_id": "45"
+    },
+    "46": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "8ecde790b4b854f2d4df66d17504fbdd89d553bb615748d9216fed4b164c2098",
+      "derivations": [
+        {
+          "evidence": "Enumerate the three-bit vectors orthogonal to hidden period 101 over GF(2).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The orthogonal subspace has dimension two and therefore four uniform outcomes.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The orthogonal subspace has dimension two and therefore four uniform outcomes."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-46-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "46"
+    },
+    "47": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "74e2176924db931fb16997aab1e2781b0badec1f0f9e601b07118251383585ef",
+      "derivations": [
+        {
+          "evidence": "Propagate the phase kickback (-1)^x0 through both valid terminal transforms and retain both exact readout conventions.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Direct Hadamard interference yields 01, while the standard two-qubit inverse QFT yields the equivalent period-frequency encoding 10.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Direct Hadamard interference yields 01, while the standard two-qubit inverse QFT yields the equivalent period-frequency encoding 10."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-47-exact-distribution",
+      "target_version": "1.0.0",
+      "task_id": "47"
+    },
+    "48": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "9cc1e50b65e2457251bd7931863cf222af350c659c9b4d3667f609850189d68e",
+      "derivations": [
+        {
+          "evidence": "Apply the fixed p=1 cost and mixer matrices to |+>^3 and square amplitudes.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "An independent diagonal cost-phase calculation agrees with gate-by-gate propagation.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "An independent diagonal cost-phase calculation agrees with gate-by-gate propagation."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-48-fixed-qaoa-distribution",
+      "target_version": "1.0.0",
+      "task_id": "48"
+    },
+    "49": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "156433da8384956614325936e87ffde395b5d09a990a7ea6eb59af2a7a4ac5f8",
+      "derivations": [
+        {
+          "evidence": "Enumerate all first-order orderings of the three exact Pauli exponentials, use one ordering consistently for two steps, and apply each result to |01>.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Independent 4x4 matrix multiplication reproduces every distinct state generated by the six factor permutations.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Independent 4x4 matrix multiplication reproduces every distinct state generated by the six factor permutations."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-49-first-order-trotter-state-set",
+      "target_version": "1.0.0",
+      "task_id": "49"
+    },
+    "50": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "94d4b1ca5c25f38b06ee782c8651dbefe33e8c8d2f7b3b7f502b97eedce32b64",
+      "derivations": [
+        {
+          "evidence": "exp(-i(X0+X1)pi/4)|00> factors into RX(pi/2) on each qubit, giving ((|0>-i|1>)/sqrt(2))^tensor2 with amplitudes {00: 1/2, 01: -i/2, 10: -i/2, 11: -1/2}.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The walk state is the unique product state whose uniform measurement marginal also carries the -i single-excitation phases; H tensor H |00> has fidelity only 1/4 with it.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The walk state is the unique product state whose uniform measurement marginal also carries the -i single-excitation phases; H tensor H |00> has fidelity only 1/4 with it."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-50-sparse-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "50"
+    },
+    "51": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "f6216b44a0cea69efd2d4bb2f0b1794121ba210ac87bce647ae8ff7db27f94b1",
+      "derivations": [
+        {
+          "evidence": "One marked item among four gives Grover angle pi/6; phase estimation samples the conjugate eigenphases.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Direct controlled-Grover simulation agrees with the analytic QPE kernel and maps the phase to count one.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Direct controlled-Grover simulation agrees with the analytic QPE kernel and maps the phase to count one."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-51-quantum-counting-distribution",
+      "target_version": "1.0.0",
+      "task_id": "51"
+    },
+    "52": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "3a053b1ac183489b0111465d67d45989d1664a457fad973df566a667c918be38",
+      "derivations": [
+        {
+          "evidence": "The modular powers of two modulo fifteen have order four, exactly resolved by four counting qubits.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The orbit 1,2,4,8 closes and an independent inverse-QFT calculation produces four uniform peaks.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The orbit 1,2,4,8 closes and an independent inverse-QFT calculation produces four uniform peaks."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-52-order-finding-distribution",
+      "target_version": "1.0.0",
+      "task_id": "52"
+    },
+    "53": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "f625339615867a9d6f089089b7e812b7feee57dd04404acd49d04dbbac66097d",
+      "derivations": [
+        {
+          "evidence": "Compute and normalize A^-1|b> = (|0>+|1>/2)/sqrt(5/4).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Multiplication by diag(1,2) returns a vector proportional to the uniform rhs and the success branch has nonzero probability.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Multiplication by diag(1,2) returns a vector proportional to the uniform rhs and the success branch has nonzero probability."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-53-postselected-linear-system-state",
+      "target_version": "1.0.0",
+      "task_id": "53"
+    },
+    "54": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "29caa58a56a17a1d5238ccdfd938a8ca8adeb3db9cc8de6d1d6f94b869713a2c",
+      "derivations": [
+        {
+          "evidence": "Enumerate every symmetric ordering of the seven exponential factors and require exact membership in the resulting state set, instead of a distance ball around the ideal evolution.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Each enumerated ordering is a valid second-order product formula; a dropped or sign-flipped field term matches none of them even though it sat inside the previous 0.1767 trace-distance budget.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Each enumerated ordering is a valid second-order product formula; a dropped or sign-flipped field term matches none of them even though it sat inside the previous 0.1767 trace-distance budget."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-54-trotter-ordering-state-set",
+      "target_version": "1.0.0",
+      "task_id": "54"
+    },
+    "55": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d917648e95574b1f3df8ec4e0f8622889548f0b7dc8d42fdc4925efb0407d069",
+      "derivations": [
+        {
+          "evidence": "Compose two fixed MaxCut cost/mixer layers and square the final amplitudes.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Independent diagonal-cost and gate-by-gate implementations agree and probabilities normalize to one.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        16
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Independent diagonal-cost and gate-by-gate implementations agree and probabilities normalize to one."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-55-fixed-qaoa-distribution",
+      "target_version": "1.0.0",
+      "task_id": "55"
+    },
+    "56": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "e8b9c8aed676d9dd6b9b928b83b808f8d03ca85ab5ecca0da0368d74f862d06a",
+      "derivations": [
+        {
+          "evidence": "Map the four diagonal eigenvalues to phases at t=pi/4 and mix their QPE distributions uniformly.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Direct spectral summation and controlled-phase circuit propagation agree outcome by outcome.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Direct spectral summation and controlled-phase circuit propagation agree outcome by outcome."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-56-spectral-phase-distribution",
+      "target_version": "1.0.0",
+      "task_id": "56"
+    },
+    "57": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "a3f695e94d91f251131e836d1b5ecef892dc21e3548bc78aa81e3e18050868e6",
+      "derivations": [
+        {
+          "evidence": "Apply four symmetric prompt-specified Trotter steps to the uniform two-qubit state.",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "Independent Pauli decomposition and dense 4x4 step matrices agree; all outcome probabilities normalize.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "Independent Pauli decomposition and dense 4x4 step matrices agree; all outcome probabilities normalize."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-57-ideal-ctqw-distribution",
+      "target_version": "1.0.0",
+      "task_id": "57"
+    },
+    "58": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "9d0918b3983cfe250bf51648b6695cf35e59b1c0842312a3a08754ccfac126d6",
+      "derivations": [
+        {
+          "evidence": "With |psi>=|+0> and U|psi>=|00>, the pre-measurement Hadamard-test state is (|0>a(|psi>+U|psi>)+|1>a(|psi>-U|psi>))/2, giving amplitudes ((1+1/sqrt(2))/2, (1/sqrt(2)-1)/2, 1/(2sqrt(2)), 1/(2sqrt(2))) on (000,001,010,011).",
+          "id": "prompt-formalization",
+          "method": "equation_or_truth_table",
+          "narrative": "Formalize the prompt as the checked semantic target artifact."
+        },
+        {
+          "evidence": "The q0 marginal reproduces P(0)=(1+Re<psi|U|psi>)/2=(1+1/sqrt(2))/2 and the ancilla-system coherences pin the controlled-U structure a bare RY ancilla rotation cannot reproduce.",
+          "id": "independent-invariants",
+          "method": "analytic_cross_check",
+          "narrative": "Challenge the target using a separately stated invariant or construction."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_semantic_assets.py --check",
+      "invariants": [
+        "The q0 marginal reproduces P(0)=(1+Re<psi|U|psi>)/2=(1+1/sqrt(2))/2 and the ancilla-system coherences pin the controlled-U structure a bare RY ancilla rotation cannot reproduce."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval q[n-1]...q[0] bit order.",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language prompts in all four core framework assets.",
+      "suite": "core",
+      "target_id": "core-58-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "58"
+    }
+  }
+}

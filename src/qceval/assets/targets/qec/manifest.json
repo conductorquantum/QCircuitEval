@@ -1,0 +1,522 @@
+{
+  "schema_version": "1",
+  "suite": "qec",
+  "tasks": {
+    "qec01": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "81b888184b01b4fc1fa97c27fcadb55cf6ac24ec7764a600d93b81ab37f5d2ed",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec01-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec01"
+    },
+    "qec02": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "83f26469edc77cc5323ce65b25615be7c46e228287fa605faa7060f05614af46",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec02-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec02"
+    },
+    "qec03": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "9cef58e483f776c8ac397cc1401126351ba0f61831244208702d471506c8157d",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec03-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec03"
+    },
+    "qec04": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "964b1510caf5766dcfbd6aa6023df93c69276366be894cbf257f70cd4809100a",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec04-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec04"
+    },
+    "qec05": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "34d660fc4fe5b95c14a988c65e9707451c287d9876e5b110eb972dd0116f38cb",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec05-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec05"
+    },
+    "qec06": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "d0fb6dfcf347305dc4bb2c77fb49a16890b3ee8176ecf255281ed9b8a44a89e8",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        512
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec06-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "qec06"
+    },
+    "qec07": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "16bbed426fd10c85572f1bcaea47fc2c3447a41a089f4706278c3a3a8fe74fad",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        128
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec07-exact-state",
+      "target_version": "1.0.0",
+      "task_id": "qec07"
+    },
+    "qec08": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "0fdf4145d4a6e853dca58bc054308bf28fb08eec0f3ea5896e85ae14cd15d53e",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        8
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec08-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec08"
+    },
+    "qec09": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "b04c5b234e4bb55a28895fa1bc0f39d462fe27bd06f4ca697096cdfe2d421eeb",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        128
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec09-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec09"
+    },
+    "qec10": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "4cd1c8eecea3cbf16e6f566db21548c55f2ff1fe4935eba523cc8cf1797a6e9f",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        64
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec10-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec10"
+    },
+    "qec11": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "7d06021cdcea7d63090cfba9a11a952a59c2a72a94fee6696f91cda18e2e1b0f",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        4
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec11-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec11"
+    },
+    "qec12": {
+      "applicable_frameworks": [
+        "qiskit",
+        "cirq",
+        "pennylane",
+        "cudaq"
+      ],
+      "artifact": "target.json",
+      "artifact_format": "semantic_target_spec_v1",
+      "artifact_sha256": "df10a76f63675160b9d70cd943ee26e499d8638d262a836af7bd714429d193ec",
+      "derivations": [
+        {
+          "evidence": "The generated target follows the declared codewords, stabilizers, and logical map.",
+          "id": "stabilizer-or-truth-table",
+          "method": "analytic_gf2_or_stabilizer_derivation",
+          "narrative": "Derive the contracted state or syndrome relation directly from the prompt."
+        },
+        {
+          "evidence": "All no-error and single-error points are enumerated; state targets satisfy unit norm.",
+          "id": "independent-invariants",
+          "method": "exhaustive_domain_and_code_invariants",
+          "narrative": "Cross-check every declared finite input and code-space invariant independently."
+        }
+      ],
+      "dimensions": [
+        2
+      ],
+      "generator_command": "uv run python ci/generate_qec_semantic_assets.py --check",
+      "invariants": [
+        "Every finite prompt argument is covered exactly once.",
+        "Exact distributions are normalized point masses.",
+        "Exact codeword states preserve relative phase and have unit norm."
+      ],
+      "known_ambiguities": [],
+      "normalization": "QCircuitEval little-endian classical output; state basis q[n-1]...q[0].",
+      "resolution_adrs": [],
+      "schema_version": "1",
+      "source": "Natural-language QEC prompts shared across all four framework assets.",
+      "suite": "qec",
+      "target_id": "qec12-exact-distribution-family",
+      "target_version": "1.0.0",
+      "task_id": "qec12"
+    }
+  }
+}

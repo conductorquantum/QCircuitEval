@@ -1,0 +1,42 @@
+{
+  "51": [
+    "quantum_counting_marked_11",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef quantum_counting_marked_11():\n    qc = QuantumCircuit(5, 3)\n    qc.h(0)\n    qc.x(1)\n    qc.measure(0, 0)\n    qc.measure(1, 1)\n    qc.measure(2, 2)\n    return qc\n",
+    "min_entangling_gate_count"
+  ],
+  "52": [
+    "shor_order_finding_mod15",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef shor_order_finding_mod15():\n    qc = QuantumCircuit(4, 4)\n    for qubit in range(4):\n        qc.h(qubit)\n        qc.measure(qubit, qubit)\n    return qc\n",
+    "min_num_qubits"
+  ],
+  "53": [
+    "hhl_2x2_diagonal_system",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef hhl_2x2_diagonal_system():\n    qc = QuantumCircuit(4, 4)\n    qc.h(2)\n    qc.ry(1.0471975512, 3)\n    qc.measure(2, 2)\n    qc.measure(3, 3)\n    return qc\n",
+    "required_interactions"
+  ],
+  "54": [
+    "heisenberg_trotter_second_order",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef heisenberg_trotter_second_order():\n    qc = QuantumCircuit(3, 3)\n    qc.x(2)\n    qc.cx(0, 1)\n    qc.rz(0.5, 1)\n    qc.cx(0, 1)\n    for qubit in range(3):\n        qc.measure(qubit, qubit)\n    return qc\n",
+    "required_interactions"
+  ],
+  "55": [
+    "qaoa_maxcut_p2_fixed",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef qaoa_maxcut_p2_fixed():\n    qc = QuantumCircuit(4, 4)\n    for qubit in range(4):\n        qc.h(qubit)\n        qc.measure(qubit, qubit)\n    return qc\n",
+    "min_entangling_gate_count"
+  ],
+  "56": [
+    "spectral_sum_phase_estimation",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef spectral_sum_phase_estimation():\n    qc = QuantumCircuit(5, 3)\n    for qubit in range(3):\n        qc.h(qubit)\n        qc.measure(qubit, qubit)\n    return qc\n",
+    "required_interactions"
+  ],
+  "57": [
+    "ctqw_path4_spatial_search",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef ctqw_path4_spatial_search():\n    qc = QuantumCircuit(2, 2)\n    qc.h(0)\n    qc.h(1)\n    qc.rx(1.5707963268, 0)\n    qc.rx(1.5707963268, 1)\n    qc.measure(0, 0)\n    qc.measure(1, 1)\n    return qc\n",
+    "min_entangling_gate_count"
+  ],
+  "58": [
+    "hadamard_test_matrix_element",
+    "\nfrom qiskit import QuantumCircuit\n\n\ndef hadamard_test_matrix_element():\n    qc = QuantumCircuit(3, 1)\n    qc.ry(0.7853981634, 0)\n    qc.measure(0, 0)\n    return qc\n",
+    "required_interactions"
+  ]
+}

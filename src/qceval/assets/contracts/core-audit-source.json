@@ -1,0 +1,2819 @@
+{
+  "schema_version": "1",
+  "tasks": {
+    "01": {
+      "audit_status": "reviewed",
+      "crosscheck": "The marked-state amplitude is sin(3*asin(1/2))=1 and all unmarked amplitudes vanish.",
+      "derivation": "One Grover iteration for N=4 and the single marked item |00> has unit success probability.",
+      "hard": {
+        "algorithm": "grover",
+        "grover_iterations": 1,
+        "marked_states": [
+          "00"
+        ],
+        "search_qubits": [
+          0,
+          1
+        ]
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "00": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 2
+    },
+    "03": {
+      "ancillas": [
+        {
+          "final": "restore",
+          "indices": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "initial": "zero"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "With two marked items among eight, one Grover iteration maps all probability uniformly onto the marked subspace.",
+      "derivation": "Exhaustive evaluation of the six CNF clauses leaves exactly assignments 010 and 110.",
+      "hard": {
+        "algorithm": "grover",
+        "ancillas_restore_to_zero": true,
+        "cnf": "prompt_literal_formula",
+        "grover_iterations": 1,
+        "search_qubits": [
+          0,
+          1,
+          2
+        ]
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "010": "1/2",
+          "110": "1/2"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 10
+    },
+    "04": {
+      "arguments": [
+        {
+          "domain": "fixed_k3_2_edges",
+          "name": "G",
+          "required": true,
+          "type": "graph"
+        },
+        {
+          "domain": "all_real",
+          "name": "beta",
+          "required": true,
+          "type": "real_vector_5"
+        },
+        {
+          "domain": "all_real",
+          "name": "gamma",
+          "required": true,
+          "type": "real_vector_5"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "At all-zero parameters the family reduces exactly to |+>^5; derivatives match the declared cost and mixer generators.",
+      "derivation": "Apply five alternating MaxCut cost and X-mixer layers to |+>^5 for the supplied parameter vectors.",
+      "hard": {
+        "algorithm": "qaoa_ansatz",
+        "measure_all": true,
+        "parameter_order": [
+          "beta",
+          "gamma"
+        ]
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "parameter_completeness": "structured_qaoa_source_identity",
+      "parameter_names": [
+        "beta0",
+        "beta1",
+        "beta2",
+        "beta3",
+        "beta4",
+        "gamma0",
+        "gamma1",
+        "gamma2",
+        "gamma3",
+        "gamma4"
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "cost": "maxcut",
+        "graph_edges": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "initial_state": "plus_5",
+        "layers": 5,
+        "mixer": "sum_X",
+        "type": "qaoa_state_family"
+      },
+      "total_qubits": 5
+    },
+    "05": {
+      "audit_status": "reviewed",
+      "crosscheck": "Dynamic programming over all 32 assignments confirms the unique optimum picks items 0 and 4 with value 8 at weight 7.",
+      "derivation": "Enumerate every feasible knapsack assignment for the declared instance; the accepted distribution is the point mass on the optimal assignment 10001 in q4..q0 order.",
+      "hard": {
+        "algorithm": "grover",
+        "forbid_optimizer": true,
+        "grover_iterations": 5,
+        "optimal_assignment": "10001",
+        "search_qubits": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "10001": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 5,
+      "max_qubits": 12,
+      "max_dimension": 4096
+    },
+    "06": {
+      "arguments": [
+        {
+          "domain": "normalized_pure_state",
+          "name": "unknown_state",
+          "required": true,
+          "type": "single_qubit_program"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "The formula gives one for |0>, one half for |1>, and is invariant under global phase. Replaying three declared witness states with distinct overlaps rejects any implementation that ignores unknown_state.",
+      "derivation": "The swap-test ancilla-zero probability is (1+state fidelity)/2, evaluated per declared witness state ry(theta) then rz(phi) applied to |0>.",
+      "diagnostic_points": [
+        [
+          2.0943951023931953,
+          0.6283185307179586
+        ],
+        [
+          1.0471975511965976,
+          2.443460952792061
+        ],
+        [
+          2.6,
+          4.2
+        ]
+      ],
+      "hard": {
+        "algorithm": "swap_test",
+        "measure": "ancilla_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0
+      ],
+      "parameter_completeness": "declared_witness_state_replay",
+      "parameter_quantifier": "exhaustive",
+      "parameters": [
+        {
+          "binding": "unknown_state.polar_angle",
+          "domain": "[0, pi]",
+          "excluded": [],
+          "name": "witness_theta",
+          "periodicity": 6.283185307179586,
+          "type": "real",
+          "units": "radian"
+        },
+        {
+          "binding": "unknown_state.relative_phase",
+          "domain": "[0, 2*pi)",
+          "excluded": [],
+          "name": "witness_phi",
+          "periodicity": 6.283185307179586,
+          "type": "real",
+          "units": "radian"
+        }
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probability_zero": "(1+abs(<0|psi>)^2)/2",
+        "reference_state": "0",
+        "type": "swap_test_formula"
+      },
+      "total_qubits": 3
+    },
+    "07": {
+      "audit_status": "reviewed",
+      "crosscheck": "Tensoring two Bernoulli(1/2) outcomes and one deterministic zero produces four equiprobable strings.",
+      "derivation": "Two unequal basis-bit comparisons yield fair ancillas while the equal comparison yields zero.",
+      "hard": {
+        "algorithm": "three_individual_swap_tests",
+        "left_state": "011",
+        "measure": "ancillas_only",
+        "right_state": "000"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        6,
+        7,
+        8
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "000": "1/4",
+          "010": "1/4",
+          "100": "1/4",
+          "110": "1/4"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 9
+    },
+    "08": {
+      "audit_status": "reviewed",
+      "crosscheck": "Every column has unit norm, distinct columns are orthogonal, and QFT^4 is identity under the pinned order.",
+      "derivation": "Use the defining 64-point discrete Fourier transform matrix.",
+      "hard": {
+        "algorithm": "six_qubit_qft",
+        "measurement": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "total_unitary",
+      "logical_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "dimension": 64,
+        "matrix_element": "exp(2*pi*i*j*k/64)/8",
+        "swap_convention": "normalized_logical_order",
+        "type": "fourier_operator"
+      },
+      "target_dimensions": [
+        64,
+        64
+      ],
+      "total_qubits": 6
+    },
+    "09": {
+      "audit_status": "reviewed",
+      "crosscheck": "Three-bit QPE represents both eigenphases exactly, so no other counting outcome has support.",
+      "derivation": "Input |0> is an equal superposition of the X eigenstates with phases zero and one half.",
+      "hard": {
+        "algorithm": "qpe",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "counting_qubits": 3,
+        "measure": "counting_only",
+        "unitary": "pauli_x"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "phase_fractions": [
+          "0",
+          "1/2"
+        ],
+        "probabilities": {
+          "000": "1/2",
+          "100": "1/2"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 4
+    },
+    "10": {
+      "ancillas": [
+        {
+          "final": "discard",
+          "indices": [
+            0
+          ],
+          "initial": "zero"
+        }
+      ],
+      "approximation": {
+        "error_budget": 0.04,
+        "metric": "trace_distance",
+        "mode": "approximate",
+        "tolerance": 0.05,
+        "uncertainty": 1e-06
+      },
+      "audit_status": "reviewed",
+      "crosscheck": "The target satisfies A|x> proportional to |b>; residual and normalization are checked independently.",
+      "derivation": "Solve the declared four-dimensional linear system and normalize A^-1 b on the success branch.",
+      "hard": {
+        "algorithm": "hhl",
+        "clock_qubits": 3,
+        "evolution_time": "pi/4",
+        "measure": [
+          "success",
+          "solution"
+        ]
+      },
+      "interfaces": {
+        "cirq": {
+          "key": "result",
+          "layout": "register_roles",
+          "mode": "postselected_terminal",
+          "qubits": [
+            0,
+            4,
+            5
+          ],
+          "render_order": [
+            5,
+            4,
+            0
+          ]
+        },
+        "cudaq": {
+          "layout": "register_roles",
+          "mode": "postselected_terminal",
+          "qubits": [
+            0,
+            4,
+            5
+          ],
+          "render_order": [
+            5,
+            4,
+            0
+          ]
+        },
+        "pennylane": {
+          "mode": "postselected_probabilities",
+          "wires": [
+            5,
+            4,
+            0
+          ]
+        },
+        "qiskit": {
+          "layout": "register_roles",
+          "mode": "postselected_terminal",
+          "qubits": [
+            0,
+            4,
+            5
+          ],
+          "render_order": [
+            5,
+            4,
+            0
+          ]
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        4,
+        5
+      ],
+      "output_qubits": [
+        4,
+        5
+      ],
+      "postselection": {
+        "min_probability": 1e-09,
+        "system": "ancilla_0",
+        "values": [
+          "1"
+        ]
+      },
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "matrix": [
+          [
+            "3/2",
+            "0",
+            "0",
+            "-1/2"
+          ],
+          [
+            "0",
+            "7/2",
+            "-1/2",
+            "0"
+          ],
+          [
+            "0",
+            "-1/2",
+            "7/2",
+            "0"
+          ],
+          [
+            "-1/2",
+            "0",
+            "0",
+            "3/2"
+          ]
+        ],
+        "rhs": [
+          "1/sqrt(2)",
+          "1/sqrt(2)",
+          "0",
+          "0"
+        ],
+        "solution": "normalize(A^-1*b)",
+        "success_event": "ancilla=1",
+        "type": "postselected_linear_system_state"
+      },
+      "total_qubits": 6
+    },
+    "11": {
+      "audit_status": "reviewed",
+      "crosscheck": "The zero string is excluded for every balanced linear oracle and the inverse bit-order legacy alias is not accepted.",
+      "derivation": "The phase-oracle Bernstein form of the balanced secret returns the pinned secret bitstring.",
+      "hard": {
+        "algorithm": "deutsch_jozsa",
+        "measure": "query_only",
+        "oracle_class": "balanced",
+        "secret": "1100"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "1100": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 5
+    },
+    "12": {
+      "audit_status": "reviewed",
+      "crosscheck": "Both allowed constant-function phases have identical query-register probabilities.",
+      "derivation": "A constant oracle leaves the Deutsch-Jozsa query register at zero after interference.",
+      "hard": {
+        "algorithm": "deutsch_jozsa",
+        "measure": "query_only",
+        "oracle_class": "constant_zero"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "0000": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 5
+    },
+    "13": {
+      "audit_status": "reviewed",
+      "crosscheck": "The orthogonal subspace has dimension one and therefore two uniform outcomes.",
+      "derivation": "Enumerate the two-bit vectors orthogonal to hidden period 11 over GF(2).",
+      "hard": {
+        "algorithm": "simon",
+        "hidden_period": "11",
+        "queries": 1
+      },
+      "interfaces": {
+        "cirq": {
+          "key": "result",
+          "mode": "terminal",
+          "qubits": [
+            0,
+            1
+          ],
+          "render_order": [
+            1,
+            0
+          ]
+        },
+        "cudaq": {
+          "mode": "terminal",
+          "qubits": [
+            0,
+            1
+          ],
+          "render_order": [
+            1,
+            0
+          ]
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "terminal",
+          "qubits": [
+            0,
+            1
+          ],
+          "render_order": [
+            1,
+            0
+          ]
+        }
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "constraint": "y dot 11 = 0 mod 2",
+        "probabilities": {
+          "00": "1/2",
+          "11": "1/2"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 4
+    },
+    "14": {
+      "audit_status": "reviewed",
+      "crosscheck": "The orthogonal subspace has dimension two and therefore four uniform outcomes.",
+      "derivation": "Enumerate the three-bit vectors orthogonal to hidden period 110 over GF(2).",
+      "hard": {
+        "algorithm": "simon",
+        "hidden_period": "110",
+        "queries": 1
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "constraint": "y dot 110 = 0 mod 2",
+        "probabilities": {
+          "000": "1/4",
+          "001": "1/4",
+          "110": "1/4",
+          "111": "1/4"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 6
+    },
+    "15": {
+      "audit_status": "reviewed",
+      "crosscheck": "Direct two-qubit amplitude expansion yields the same Bernoulli probabilities.",
+      "derivation": "Use p(0)=(1+Re <+|H|+>)/2 and <+|H|+>=1/sqrt(2).",
+      "hard": {
+        "algorithm": "real_hadamard_test",
+        "measure": "ancilla_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probability_one": "(1-1/sqrt(2))/2",
+        "probability_zero": "(1+1/sqrt(2))/2",
+        "state": "plus",
+        "type": "hadamard_test_distribution",
+        "unitary": "H"
+      },
+      "total_qubits": 2
+    },
+    "16": {
+      "audit_status": "reviewed",
+      "crosscheck": "The state is the simultaneous +1 eigenstate of X tensor X and Z tensor Z.",
+      "derivation": "Use the conventional Bell state produced by H on q0 followed by CX q0->q1.",
+      "hard": {
+        "measure_all": true,
+        "state_name": "bell_phi_plus"
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "00": "1/sqrt(2)",
+          "11": "1/sqrt(2)"
+        },
+        "type": "sparse_exact_state"
+      },
+      "total_qubits": 2
+    },
+    "17": {
+      "audit_status": "reviewed",
+      "crosscheck": "The state is stabilized by XXX, ZZI, and IZZ.",
+      "derivation": "Use the conventional three-qubit GHZ state with equal positive amplitudes.",
+      "hard": {
+        "measure_all": true,
+        "state_name": "ghz3"
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "000": "1/sqrt(2)",
+          "111": "1/sqrt(2)"
+        },
+        "type": "sparse_exact_state"
+      },
+      "total_qubits": 3
+    },
+    "18": {
+      "audit_status": "reviewed",
+      "crosscheck": "Choi equality is cross-checked on the six Pauli eigenstates propagated through the required in-circuit RX(pi/2) preparation.",
+      "derivation": "Teleportation with complete Bell corrections implements the identity channel from Alice to Bob; the prompt requires the RX(pi/2) preparation inside the returned circuit, so the contracted Alice-to-Bob channel is the RX(pi/2) unitary channel.",
+      "hard": {
+        "algorithm_recipe": "teleportation_q0_q1_q2",
+        "channel": "q0_to_q2_identity",
+        "input_preparation": "rx_pi_over_2_q0"
+      },
+      "input_qubits": [
+        0
+      ],
+      "kind": "channel",
+      "logical_qubits": [
+        2
+      ],
+      "output_qubits": [
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "input": "alice_q0",
+        "operator": "RX(pi/2)",
+        "output": "bob_q2",
+        "type": "witness_unitary_channel",
+        "witness_preparation": "RX(pi/2) applied to Alice q0 inside the returned circuit"
+      },
+      "target_dimensions": [
+        4,
+        4
+      ],
+      "total_qubits": 3
+    },
+    "19": {
+      "audit_status": "reviewed",
+      "crosscheck": "The target is normalized and has +1 coherence between its two support states.",
+      "derivation": "Place equal positive amplitudes on the two basis states named by the prompt.",
+      "hard": {
+        "measure_all": true
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "00101": "1/sqrt(2)",
+          "00110": "1/sqrt(2)"
+        },
+        "type": "sparse_exact_state"
+      },
+      "total_qubits": 5
+    },
+    "20": {
+      "audit_status": "reviewed",
+      "crosscheck": "Oracle queries on the standard basis reproduce the dot product with 011 and pin bit order.",
+      "derivation": "The Bernstein-Vazirani interference pattern returns the hidden linear string exactly.",
+      "hard": {
+        "algorithm": "bernstein_vazirani",
+        "measure": "query_only",
+        "secret": "011"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "probabilities": {
+          "011": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 4
+    },
+    "21": {
+      "audit_status": "reviewed",
+      "crosscheck": "The reversible CNOT/CNOT/Toffoli construction gives the same permutation on all basis states.",
+      "derivation": "Enumerate all eight inputs using the three output equations stated verbatim by meaning in the prompt.",
+      "hard": {
+        "measure_all": true,
+        "truth_table": "majority_complete"
+      },
+      "kind": "classical_io",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "cases": 8,
+        "inputs": [
+          "ci",
+          "bi",
+          "ai"
+        ],
+        "outputs": [
+          "majority(ai,bi,ci)",
+          "ai xor bi",
+          "ai xor ci"
+        ],
+        "type": "exhaustive_boolean_relation"
+      },
+      "total_qubits": 3
+    },
+    "22": {
+      "audit_status": "reviewed",
+      "crosscheck": "Integer addition and a ripple-carry recurrence agree on every input row.",
+      "derivation": "Build the complete 128-row arithmetic truth relation with a four-bit carry result.",
+      "hard": {
+        "algorithm": "reversible_quantum_adder",
+        "measure": "result_only",
+        "result_bits": 4
+      },
+      "kind": "classical_io",
+      "output_qubits": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "domain": "all a,b in 0..7 and carry_in in {0,1}",
+        "operand_bits": 3,
+        "prompt_witness": {
+          "a": 4,
+          "b": 1,
+          "carry_in": 1,
+          "sum": 6
+        },
+        "relation": "sum=(a+b+carry_in) mod 16",
+        "type": "reversible_addition_relation"
+      },
+      "total_qubits": 14
+    },
+    "23": {
+      "audit_status": "reviewed",
+      "crosscheck": "Two's-complement addition and direct modular subtraction agree for every input.",
+      "derivation": "Enumerate all eight minuends against the prompt-fixed subtrahend using modular subtraction.",
+      "hard": {
+        "algorithm": "reversible_quantum_subtractor",
+        "constant_operand_b": 3,
+        "measure": "difference_only"
+      },
+      "kind": "classical_io",
+      "output_qubits": [
+        1,
+        3,
+        5
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "domain": "all a in 0..7 with prompt-fixed b=3",
+        "operand_bits": 3,
+        "prompt_witness": {
+          "a": 7,
+          "b": 3,
+          "difference": 4
+        },
+        "relation": "difference=(a-b) mod 8",
+        "strip_prefix_x_wires": [],
+        "type": "reversible_subtraction_relation"
+      },
+      "total_qubits": 10
+    },
+    "24": {
+      "audit_status": "reviewed",
+      "crosscheck": "The state has excitation number one with certainty and is invariant under every qubit permutation.",
+      "derivation": "Use the normalized equal-positive-amplitude single-excitation state.",
+      "hard": {
+        "measure_all": true,
+        "state_name": "w4"
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "0001": "1/2",
+          "0010": "1/2",
+          "0100": "1/2",
+          "1000": "1/2"
+        },
+        "type": "sparse_exact_state"
+      },
+      "total_qubits": 4
+    },
+    "25": {
+      "arguments": [
+        {
+          "domain": "fixed_3",
+          "name": "n_count",
+          "required": false,
+          "type": "integer"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "Evaluate the three-bit QPE Dirichlet kernel and verify symmetry under phase conjugation.",
+      "derivation": "For one marked item among four, the Grover angle is pi/6 and eigenphases are plus/minus one sixth of a turn.",
+      "hard": {
+        "algorithm": "qpe_of_grover_iterate",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "marked_state": "00",
+        "measure": "counting_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "counting_qubits": 3,
+        "eigenphase_fractions": [
+          "1/6",
+          "5/6"
+        ],
+        "eigenstate_weights": [
+          "1/2",
+          "1/2"
+        ],
+        "probability_formula": "finite_qpe_dirichlet_kernel",
+        "type": "qpe_distribution"
+      },
+      "total_qubits": 5
+    },
+    "26": {
+      "audit_status": "reviewed",
+      "crosscheck": "The all-zero ancilla marginal is consistent with the global overlap squared abs(<GHZ|+++>)^2=1/4.",
+      "derivation": "Expand GHZ3 and plus3, apply the three controlled swaps, and trace both data registers.",
+      "hard": {
+        "algorithm": "three_ancilla_swap_test",
+        "measure": "ancillas_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "ancillas": 3,
+        "left_state": "GHZ3",
+        "operation": "parallel_bitwise_controlled_swaps",
+        "right_state": "plus3",
+        "type": "exact_circuit_distribution"
+      },
+      "total_qubits": 9
+    },
+    "29": {
+      "arguments": [
+        {
+          "domain": "0_or_1",
+          "name": "alice",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "domain": "0_or_1",
+          "name": "bob",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "The correlators attain the CHSH magnitude 2*sqrt(2) with normalized non-signaling marginals.",
+      "derivation": "Evaluate the Bell-state correlations for all four declared measurement-setting pairs.",
+      "diagnostic_points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "hard": {
+        "algorithm": "chsh",
+        "measure": "both_outputs"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "parameter_completeness": "enumerate_four_setting_pairs",
+      "parameter_domain": "0_or_1",
+      "parameter_names": [
+        "alice",
+        "bob"
+      ],
+      "parameter_periodicity": null,
+      "parameter_quantifier": "exhaustive",
+      "parameter_type": "integer",
+      "parameter_units": "dimensionless",
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "alice_angles": {
+          "0": "0",
+          "1": "-pi/2"
+        },
+        "bob_angles": {
+          "0": "-pi/4",
+          "1": "pi/4"
+        },
+        "probability_formula": "Born_rule_after_RY_measurement",
+        "state": "bell_phi_plus",
+        "type": "chsh_conditional_distribution"
+      },
+      "total_qubits": 2
+    },
+    "30": {
+      "audit_status": "reviewed",
+      "crosscheck": "The reversible identity a OR b = a XOR b XOR (a AND b) matches the truth table.",
+      "derivation": "Enumerate the four Boolean OR inputs with a clean result qubit.",
+      "hard": {
+        "measure": "result_q2_only"
+      },
+      "kind": "classical_io",
+      "output_qubits": [
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "ancilla_input": "q2=0",
+        "cases": 4,
+        "inputs": [
+          "q0",
+          "q1"
+        ],
+        "output": "q0 OR q1",
+        "type": "exhaustive_boolean_relation"
+      },
+      "total_qubits": 3
+    },
+    "31": {
+      "audit_status": "reviewed",
+      "crosscheck": "Direct modular powers 1,7,4,13 repeat after four and the four-bit inverse QFT represents every k/4 exactly.",
+      "derivation": "The multiplicative order of 7 modulo 15 is four, yielding phase fractions k/4.",
+      "hard": {
+        "a": 7,
+        "algorithm": "period_finding",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "measure": "phase_register",
+        "modulus": 15
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "order": 4,
+        "probabilities": {
+          "0000": "1/4",
+          "0100": "1/4",
+          "1000": "1/4",
+          "1100": "1/4"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 8
+    },
+    "32": {
+      "audit_status": "reviewed",
+      "crosscheck": "Continued fractions maps every nonzero peak to denominator four and the modular orbit closes after four.",
+      "derivation": "The order-four modular orbit produces four exact eight-bit phase peaks.",
+      "hard": {
+        "a": 7,
+        "algorithm": "shor_order_finding",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "modulus": 15,
+        "phase_qubits": 8,
+        "work_qubits": 4
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "order": 4,
+        "probabilities": {
+          "00000000": "1/4",
+          "01000000": "1/4",
+          "10000000": "1/4",
+          "11000000": "1/4"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 12
+    },
+    "33": {
+      "audit_status": "reviewed",
+      "crosscheck": "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state.",
+      "derivation": "Two-bit phase estimation of S on |1> yields binary phase 0.01 exactly.",
+      "hard": {
+        "algorithm": "iterative_phase_estimation",
+        "classical_feed_forward_or_deferred_equivalent": true,
+        "phase_fraction": "1/4"
+      },
+      "interfaces": {
+        "cirq": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                0
+              ],
+              "render_order": [
+                2,
+                1
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                0,
+                1
+              ]
+            }
+          ],
+          "key": "result",
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1,
+            2
+          ]
+        },
+        "cudaq": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                0,
+                1
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1
+          ]
+        },
+        "pennylane": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                0,
+                1
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1
+          ]
+        },
+        "qiskit": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                2
+              ],
+              "render_order": [
+                0,
+                1
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1
+          ]
+        }
+      },
+      "kind": "instrument",
+      "logical_qubits": [
+        2
+      ],
+      "measurement": "dynamic_or_deferred_equivalent",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "eigenstate": "1",
+        "iterations": 2,
+        "outcomes": {
+          "01": {
+            "conditional_target": "1",
+            "probability": "1"
+          }
+        },
+        "type": "phase_estimation_instrument",
+        "unitary": "S"
+      },
+      "total_qubits": 3
+    },
+    "34": {
+      "audit_status": "reviewed",
+      "crosscheck": "Dynamic branch enumeration and a deferred-measurement QPE construction yield the same outcome-conditioned target state.",
+      "derivation": "Three-bit phase estimation of T on |1> yields binary phase 0.001 exactly.",
+      "hard": {
+        "algorithm": "iterative_phase_estimation",
+        "classical_feed_forward_or_deferred_equivalent": true,
+        "phase_fraction": "1/8"
+      },
+      "interfaces": {
+        "cirq": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                0
+              ],
+              "render_order": [
+                3,
+                2,
+                1
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "key": "result",
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "cudaq": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1,
+            2
+          ]
+        },
+        "pennylane": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1,
+            2
+          ]
+        },
+        "qiskit": {
+          "alternatives": [
+            {
+              "conditional_qubits": [
+                1
+              ],
+              "render_order": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "conditional_qubits": [
+                3
+              ],
+              "render_order": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "mode": "dynamic_or_deferred_equivalent",
+          "qubits": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "kind": "instrument",
+      "logical_qubits": [
+        3
+      ],
+      "measurement": "dynamic_or_deferred_equivalent",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "eigenstate": "1",
+        "iterations": 3,
+        "outcomes": {
+          "001": {
+            "conditional_target": "1",
+            "probability": "1"
+          }
+        },
+        "type": "phase_estimation_instrument",
+        "unitary": "T"
+      },
+      "total_qubits": 4
+    },
+    "35": {
+      "audit_status": "reviewed",
+      "crosscheck": "Three CNOTs into a clean result bit reproduce the truth table and preserve every input.",
+      "derivation": "Enumerate all eight three-bit inputs and compute odd parity.",
+      "hard": {
+        "measure": "parity_q3_only"
+      },
+      "kind": "classical_io",
+      "output_qubits": [
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "ancilla_input": "q3=0",
+        "cases": 8,
+        "inputs": [
+          "q0",
+          "q1",
+          "q2"
+        ],
+        "output": "q0 XOR q1 XOR q2",
+        "type": "exhaustive_boolean_relation"
+      },
+      "total_qubits": 4
+    },
+    "36": {
+      "audit_status": "reviewed",
+      "crosscheck": "The inverse maps both Bell stabilizers to the computational |00> stabilizers.",
+      "derivation": "Apply the inverse of CX(q0,q1) H(q0) state preparation to Bell Phi+.",
+      "hard": {
+        "algorithm": "reverse_bell_state_preparation",
+        "measure_all": true,
+        "must_include_entangling_uncompute": true
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "00": "1"
+        },
+        "declared_input": "bell_phi_plus",
+        "type": "exact_state"
+      },
+      "total_qubits": 2
+    },
+    "37": {
+      "audit_status": "reviewed",
+      "crosscheck": "Exhaustive basis-column construction agrees with the projector formula |0><0| tensor I + |1><1| tensor H.",
+      "derivation": "Form the block diagonal operator diag(I,H) in q1q0 order.",
+      "hard": {
+        "decomposition_required": true,
+        "forbidden_gate_families": [
+          "controlled_h"
+        ]
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "total_unitary",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "control": 0,
+        "operator": "H",
+        "target": 1,
+        "type": "controlled_operator"
+      },
+      "target_dimensions": [
+        4,
+        4
+      ],
+      "total_qubits": 2
+    },
+    "38": {
+      "audit_status": "reviewed",
+      "crosscheck": "Independent dense matrix composition of the 24 declared operations reproduces the stored amplitudes to machine precision, and the state norm is exactly 1.",
+      "derivation": "Apply two declared ring-entangler plus RX/RZ/RX rotation layers with the deterministic default weights w[d][i][k]=(9d+3i+k+1)*pi/19 to |000>.",
+      "hard": {
+        "algorithm": "layered_qcl_ansatz",
+        "forbid_unitary_shortcuts": true,
+        "measure": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            2,
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measurement": "none",
+      "output_qubits": [],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "000": "0.083548938594567995-0.42761341321798674j",
+          "001": "0.10595944686689006-0.32031995737548363j",
+          "010": "0.17046380038080908+0.32064573589476936j",
+          "011": "0.13917707236653307+0.047030833211649629j",
+          "100": "-0.24607495088317549+0.19328001976284351j",
+          "101": "0.3967519007786996-0.43921936531060346j",
+          "110": "0.17601028925663628-0.23738017261509123j",
+          "111": "-0.084858805329057693-0.01070317923115869j"
+        },
+        "type": "exact_state"
+      },
+      "total_qubits": 3
+    },
+    "39": {
+      "arguments": [
+        {
+          "domain": "all_real",
+          "name": "parameters",
+          "required": true,
+          "type": "real_vector_2"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "Closed-form Bloch-vector rotation agrees with direct 2x2 matrix multiplication at a full-rank trigonometric design.",
+      "derivation": "Apply RX then RY to |0> for every pair of real angles.",
+      "diagnostic_points": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.141592653589793,
+          0.0
+        ],
+        [
+          0.37,
+          -0.91
+        ],
+        [
+          -1.1,
+          2.2
+        ],
+        [
+          1.5707963267948966,
+          0.7853981633974483
+        ]
+      ],
+      "hard": {
+        "allowed_gate_families": [
+          "rx",
+          "ry"
+        ],
+        "measure": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0
+      ],
+      "measurement": "none",
+      "output_qubits": [],
+      "parameter_completeness": "structured_rotation_source_identity",
+      "parameter_names": [
+        "rx_angle",
+        "ry_angle"
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "initial_state": "0",
+        "operation_order": [
+          "RX(rx_angle)",
+          "RY(ry_angle)"
+        ],
+        "type": "parameterized_state_family"
+      },
+      "total_qubits": 1
+    },
+    "40": {
+      "arguments": [
+        {
+          "domain": "all_real",
+          "name": "parameters",
+          "required": true,
+          "type": "real_vector_8"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "Symbolic matrix composition and basis-state propagation agree; zero parameters produce the expected entangled seed action.",
+      "derivation": "Compose the eight prompt-ordered rotations and one CX on the declared initial state.",
+      "diagnostic_points": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          3.141592653589793,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.37,
+          -0.91,
+          1.23,
+          0.5,
+          -0.4,
+          2.2,
+          -1.1,
+          0.9
+        ],
+        [
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608
+        ],
+        [
+          -2.0,
+          1.0,
+          -0.5,
+          0.25,
+          3.0,
+          -3.0,
+          0.75,
+          -0.125
+        ]
+      ],
+      "hard": {
+        "algorithm": "two_qubit_variational_ansatz",
+        "entangling_interaction": [
+          0,
+          1
+        ],
+        "measure": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "measurement": "none",
+      "output_qubits": [],
+      "parameter_completeness": "structured_rotation_source_identity",
+      "parameter_names": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "initial_state": "01_in_q1q0_order",
+        "operation_order": [
+          "RZ0(p0)",
+          "RZ0(p1)",
+          "RY0(p2)",
+          "RZ1(p3)",
+          "CX(0,1)",
+          "RZ0(p4)",
+          "RZ1(p5)",
+          "RY0(p6)",
+          "RZ1(p7)"
+        ],
+        "type": "parameterized_state_family"
+      },
+      "total_qubits": 2
+    },
+    "41": {
+      "arguments": [
+        {
+          "domain": "all_real",
+          "name": "param",
+          "required": true,
+          "type": "real_vector_6"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "Closed-form per-qubit Euler rotations agree with direct 2x2 matrix products at a full-rank trigonometric design, and the product ansatz reaches the ZZ ground state |01> exactly.",
+      "derivation": "Apply the declared RZ,RY,RZ Euler rotations on each qubit of |00> for every real 6-vector param.",
+      "diagnostic_points": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.141592653589793,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.37,
+          -0.91,
+          1.23,
+          0.5,
+          -0.4,
+          2.2
+        ],
+        [
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608,
+          1.454441043328608
+        ],
+        [
+          -2.0,
+          1.0,
+          -0.5,
+          0.25,
+          3.0,
+          -3.0
+        ]
+      ],
+      "hard": {
+        "algorithm": "vqe_z2_product_ansatz",
+        "forbid_optimizer": true,
+        "measure": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "measurement": "none",
+      "output_qubits": [],
+      "parameter_completeness": "structured_rotation_source_identity",
+      "parameter_names": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "initial_state": "00",
+        "operation_order": [
+          "RZ0(p0)",
+          "RY0(p1)",
+          "RZ0(p2)",
+          "RZ1(p3)",
+          "RY1(p4)",
+          "RZ1(p5)"
+        ],
+        "type": "parameterized_state_family"
+      },
+      "total_qubits": 2
+    },
+    "43": {
+      "audit_status": "reviewed",
+      "crosscheck": "The standard H/CX/T decomposition and exhaustive truth table agree up to global phase.",
+      "derivation": "Construct the eight-dimensional permutation that toggles q2 iff q0=q1=1.",
+      "hard": {
+        "allowed_gate_families": [
+          "rz",
+          "sx",
+          "cx"
+        ],
+        "forbidden_gate_families": [
+          "ccx",
+          "toffoli"
+        ],
+        "measure": "none"
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            2,
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "total_unitary",
+      "logical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measurement": "none",
+      "output_qubits": [],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "controls": [
+          0,
+          1
+        ],
+        "operator": "X",
+        "target": 2,
+        "type": "controlled_controlled_operator"
+      },
+      "target_dimensions": [
+        8,
+        8
+      ],
+      "total_qubits": 3
+    },
+    "44": {
+      "ambiguities": [
+        "Literal single-qubit-only local Cliffords cannot implement an entangling CX."
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "H(target) CZ H(target) produces the same operator and proves an entangling Clifford primitive is necessary.",
+      "derivation": "Use the four-row CX truth table in pinned q1q0 order.",
+      "hard": {
+        "allowed_gate_class": "Clifford including an entangling Clifford primitive",
+        "forbidden_gate_families": [
+          "cx",
+          "cnot"
+        ]
+      },
+      "interfaces": {
+        "cirq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "cudaq": {
+          "mode": "none",
+          "render_order": []
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            1,
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "none",
+          "render_order": []
+        }
+      },
+      "kind": "total_unitary",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "control": 0,
+        "operator": "X",
+        "target": 1,
+        "type": "controlled_operator"
+      },
+      "target_dimensions": [
+        4,
+        4
+      ],
+      "total_qubits": 2
+    },
+    "45": {
+      "audit_status": "reviewed",
+      "crosscheck": "Independent amplitude-amplification geometry with marked fraction 1/4 matches direct matrix propagation.",
+      "derivation": "Apply the prompt-specified diagonal oracle and diffuser to the uniform three-qubit state.",
+      "hard": {
+        "algorithm": "grover",
+        "grover_iterations": 1,
+        "measure_all": true,
+        "search_qubits": [
+          0,
+          1,
+          2
+        ]
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "diffuser": "prompt_diffuser",
+        "grover_iterations": 1,
+        "initial_state": "plus3",
+        "marked_states": [
+          "010",
+          "101"
+        ],
+        "oracle": "prompt_phase_oracle",
+        "type": "exact_circuit_distribution"
+      },
+      "total_qubits": 3
+    },
+    "46": {
+      "audit_status": "reviewed",
+      "crosscheck": "The orthogonal subspace has dimension two and therefore four uniform outcomes.",
+      "derivation": "Enumerate the three-bit vectors orthogonal to hidden period 101 over GF(2).",
+      "hard": {
+        "algorithm": "simon",
+        "hidden_period": "101",
+        "queries": 1
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "constraint": "y dot 101 = 0 mod 2",
+        "probabilities": {
+          "000": "1/4",
+          "010": "1/4",
+          "101": "1/4",
+          "111": "1/4"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 6
+    },
+    "47": {
+      "audit_status": "reviewed",
+      "crosscheck": "Direct Hadamard interference yields 01, while the standard two-qubit inverse QFT yields the equivalent period-frequency encoding 10.",
+      "derivation": "Propagate the phase kickback (-1)^x0 through both valid terminal transforms and retain both exact readout conventions.",
+      "hard": {
+        "algorithm": "bernstein_vazirani",
+        "measure": "query_only",
+        "secret": "01"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "accepted_probability_maps": [
+          {
+            "10": "1"
+          }
+        ],
+        "probabilities": {
+          "01": "1"
+        },
+        "type": "exact_distribution"
+      },
+      "total_qubits": 3
+    },
+    "48": {
+      "audit_status": "reviewed",
+      "crosscheck": "An independent diagonal cost-phase calculation agrees with gate-by-gate propagation.",
+      "derivation": "Apply the fixed p=1 cost and mixer matrices to |+>^3 and square amplitudes.",
+      "hard": {
+        "algorithm": "fixed_qaoa",
+        "layers": 1,
+        "measure_all": true
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "beta": [
+          0.4
+        ],
+        "cost_unitary": "CX-RZ(2gamma)-CX",
+        "gamma": [
+          0.7
+        ],
+        "graph_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "mixer": "RX(2beta)",
+        "type": "fixed_qaoa_distribution"
+      },
+      "total_qubits": 3
+    },
+    "49": {
+      "audit_status": "reviewed",
+      "crosscheck": "Independent 4x4 matrix multiplication reproduces every distinct state generated by the six factor permutations.",
+      "derivation": "Enumerate all first-order orderings of the three exact Pauli exponentials, use one ordering consistently for two steps, and apply each result to |01>.",
+      "hard": {
+        "algorithm": "first_order_trotter",
+        "dt": 0.4,
+        "measure_all": true,
+        "steps": 2
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "hamiltonian": "0.7 Z0Z1 + 0.4 X0 + 0.3 X1",
+        "initial_state": "01_in_q1q0_order",
+        "order": 1,
+        "certification": "membership_in_all_3_factor_orderings",
+        "steps": 2,
+        "time": 0.8,
+        "type": "first_order_trotter_state_set"
+      },
+      "total_qubits": 2
+    },
+    "50": {
+      "audit_status": "reviewed",
+      "crosscheck": "The walk state is the unique product state whose uniform measurement marginal also carries the -i single-excitation phases; H tensor H |00> has fidelity only 1/4 with it.",
+      "derivation": "exp(-i(X0+X1)pi/4)|00> factors into RX(pi/2) on each qubit, giving ((|0>-i|1>)/sqrt(2))^tensor2 with amplitudes {00: 1/2, 01: -i/2, 10: -i/2, 11: -1/2}.",
+      "hard": {
+        "algorithm": "continuous_time_quantum_walk",
+        "measure_all": true
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1
+      ],
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "00": "0.5",
+          "01": "-0.5j",
+          "10": "-0.5j",
+          "11": "-0.5"
+        },
+        "graph": "cycle4",
+        "hamiltonian": "X0+X1",
+        "time": "pi/4",
+        "type": "sparse_exact_state"
+      },
+      "total_qubits": 2
+    },
+    "51": {
+      "audit_status": "reviewed",
+      "crosscheck": "Direct controlled-Grover simulation agrees with the analytic QPE kernel and maps the phase to count one.",
+      "derivation": "One marked item among four gives Grover angle pi/6; phase estimation samples the conjugate eigenphases.",
+      "hard": {
+        "algorithm": "quantum_counting",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "forbid_library_shortcuts": true,
+        "measure": "counting_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "counting_qubits": 3,
+        "grover_eigenphases": [
+          "1/6",
+          "5/6"
+        ],
+        "marked_states": [
+          "11"
+        ],
+        "probability_formula": "finite_qpe_dirichlet_kernel",
+        "search_qubits": 2,
+        "type": "quantum_counting_distribution"
+      },
+      "total_qubits": 5
+    },
+    "52": {
+      "audit_status": "reviewed",
+      "crosscheck": "The orbit 1,2,4,8 closes and an independent inverse-QFT calculation produces four uniform peaks.",
+      "derivation": "The modular powers of two modulo fifteen have order four, exactly resolved by four counting qubits.",
+      "hard": {
+        "algorithm": "shor_order_finding",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "forbid_library_shortcuts": true,
+        "measure": "counting_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "a": 2,
+        "counting_qubits": 4,
+        "modulus": 15,
+        "order": 4,
+        "probabilities": {
+          "0000": "1/4",
+          "0100": "1/4",
+          "1000": "1/4",
+          "1100": "1/4"
+        },
+        "type": "order_finding_distribution"
+      },
+      "total_qubits": 8
+    },
+    "53": {
+      "ancillas": [
+        {
+          "final": "discard",
+          "indices": [
+            3
+          ],
+          "initial": "zero"
+        }
+      ],
+      "audit_status": "reviewed",
+      "crosscheck": "Multiplication by diag(1,2) returns a vector proportional to the uniform rhs and the success branch has nonzero probability.",
+      "derivation": "Compute and normalize A^-1|b> = (|0>+|1>/2)/sqrt(5/4).",
+      "hard": {
+        "algorithm": "hhl",
+        "algorithm_recipe": "hhl_diagonal_2x2",
+        "measure": [
+          "system_q2",
+          "success_q3"
+        ],
+        "scaling_constant": 1,
+        "time": "pi/2"
+      },
+      "kind": "state",
+      "logical_qubits": [
+        2
+      ],
+      "output_qubits": [
+        2,
+        3
+      ],
+      "postselection": {
+        "min_probability": 0.6,
+        "system": "ancilla_0",
+        "values": [
+          "1"
+        ]
+      },
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "clock_discard": [
+          0,
+          1
+        ],
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "rhs": [
+          "1/sqrt(2)",
+          "1/sqrt(2)"
+        ],
+        "solution": "(2|0>+|1>)/sqrt(5)",
+        "success_event": "q3=1",
+        "type": "postselected_linear_system_state"
+      },
+      "total_qubits": 4
+    },
+    "54": {
+      "approximation": {
+        "error_budget": 0.0,
+        "metric": "trace_distance",
+        "mode": "exact",
+        "tolerance": 1e-07,
+        "uncertainty": 1e-12
+      },
+      "audit_status": "reviewed",
+      "crosscheck": "Each enumerated ordering is a valid second-order product formula; a dropped or sign-flipped field term matches none of them even though it sat inside the previous 0.1767 trace-distance budget.",
+      "derivation": "Enumerate every symmetric ordering of the seven exponential factors and require exact membership in the resulting state set, instead of a distance ball around the ideal evolution.",
+      "hard": {
+        "algorithm": "second_order_trotter",
+        "forbid_dense_evolution_shortcuts": true,
+        "measure_all": true
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "certification": "membership_in_all_7_factor_symmetric_orderings",
+        "couplings": {
+          "Jx": 1.0,
+          "Jy": 0.8,
+          "Jz": 0.5,
+          "h": 0.3
+        },
+        "hamiltonian": "sum_edges(Jx XX + Jy YY + Jz ZZ) + h sum_i Zi",
+        "initial_state": "100_in_q2q1q0_order",
+        "order": 2,
+        "steps": 2,
+        "time": 1.0,
+        "type": "trotter_ordering_state_set"
+      },
+      "total_qubits": 3
+    },
+    "55": {
+      "audit_status": "reviewed",
+      "crosscheck": "Independent diagonal-cost and gate-by-gate implementations agree and probabilities normalize to one.",
+      "derivation": "Compose two fixed MaxCut cost/mixer layers and square the final amplitudes.",
+      "hard": {
+        "algorithm": "fixed_qaoa",
+        "forbid_optimizer": true,
+        "measure_all": true
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "beta": [
+          0.4,
+          0.2
+        ],
+        "gamma": [
+          0.6,
+          0.3
+        ],
+        "graph_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "layers": 2,
+        "type": "fixed_qaoa_distribution"
+      },
+      "total_qubits": 4
+    },
+    "56": {
+      "audit_status": "reviewed",
+      "crosscheck": "Direct spectral summation and controlled-phase circuit propagation agree outcome by outcome.",
+      "derivation": "Map the four diagonal eigenvalues to phases at t=pi/4 and mix their QPE distributions uniformly.",
+      "hard": {
+        "algorithm": "phase_estimation",
+        "algorithm_recipe": "phase_estimation_scaffold",
+        "forbid_eigensolver_shortcuts": true,
+        "measure": "clock_only"
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1,
+        2
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "counting_qubits": 3,
+        "eigenstate_weights": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ],
+        "operator": "diag(0,1,2,3)",
+        "phase_mapping": "exp(-i*A*t)",
+        "time": "pi/4",
+        "type": "spectral_phase_distribution"
+      },
+      "total_qubits": 5
+    },
+    "57": {
+      "approximation": {
+        "error_budget": 0.001817,
+        "metric": "total_variation",
+        "mode": "approximate",
+        "tolerance": 0.001817,
+        "uncertainty": 1e-09
+      },
+      "audit_status": "reviewed",
+      "crosscheck": "Independent Pauli decomposition and dense 4x4 step matrices agree; all outcome probabilities normalize.",
+      "derivation": "Apply four symmetric prompt-specified Trotter steps to the uniform two-qubit state.",
+      "hard": {
+        "algorithm": "ctqw_spatial_search",
+        "forbid_dense_evolution_shortcuts": true,
+        "measure_all": true,
+        "steps": 4
+      },
+      "kind": "distribution",
+      "output_qubits": [
+        0,
+        1
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "certification": "exhaustive_all_4_factor_symmetric_orderings",
+        "certified_total_variation_bound": 0.001816489,
+        "gamma": 0.3,
+        "graph": "path4",
+        "hamiltonian": "-gamma*A-Pi_marked",
+        "initial_state": "uniform",
+        "marked_vertex": 0,
+        "order": 2,
+        "steps": 4,
+        "time": 1.5,
+        "type": "ideal_ctqw_distribution"
+      },
+      "total_qubits": 2
+    },
+    "58": {
+      "audit_status": "reviewed",
+      "crosscheck": "The q0 marginal reproduces P(0)=(1+Re<psi|U|psi>)/2=(1+1/sqrt(2))/2 and the ancilla-system coherences pin the controlled-U structure a bare RY ancilla rotation cannot reproduce.",
+      "derivation": "With |psi>=|+0> and U|psi>=|00>, the pre-measurement Hadamard-test state is (|0>a(|psi>+U|psi>)+|1>a(|psi>-U|psi>))/2, giving amplitudes ((1+1/sqrt(2))/2, (1/sqrt(2)-1)/2, 1/(2sqrt(2)), 1/(2sqrt(2))) on (000,001,010,011).",
+      "hard": {
+        "algorithm": "real_hadamard_test",
+        "forbid_unitary_shortcuts": true,
+        "measure": "ancilla_q0_only"
+      },
+      "interfaces": {
+        "cirq": {
+          "key": "result",
+          "mode": "terminal",
+          "qubits": [
+            0
+          ],
+          "render_order": [
+            0
+          ]
+        },
+        "cudaq": {
+          "mode": "statevector",
+          "wires": [
+            0
+          ]
+        },
+        "pennylane": {
+          "mode": "probabilities",
+          "wires": [
+            0
+          ]
+        },
+        "qiskit": {
+          "mode": "terminal",
+          "qubits": [
+            0
+          ],
+          "render_order": [
+            0
+          ]
+        }
+      },
+      "kind": "state",
+      "logical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "output_qubits": [
+        0
+      ],
+      "review_evidence": "src/qceval/assets/contracts/core.jsonl",
+      "reviewer": "grok-second-audit-2026-07-10",
+      "target": {
+        "amplitudes": {
+          "000": "0.8535533905932737",
+          "001": "-0.14644660940672621",
+          "010": "0.35355339059327373",
+          "011": "0.35355339059327373"
+        },
+        "component": "real",
+        "type": "exact_state",
+        "unitary_sequence": [
+          "CZ(q1,q2)",
+          "H(q1)",
+          "T(q1)",
+          "CX(q1,q2)"
+        ]
+      },
+      "total_qubits": 3
+    }
+  }
+}

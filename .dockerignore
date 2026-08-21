@@ -1,0 +1,16 @@
+.coverage
+.env
+.git
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.venv
+__pycache__/
+*.py[cod]
+
+dist/
+docs/_build/
+saved_results/
+results*.json
+results*.jsonl
+.qceval-cache/

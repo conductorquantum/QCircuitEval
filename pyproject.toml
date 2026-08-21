@@ -1,0 +1,193 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qceval"
+version = "0.1.0"
+description = "Provider-agnostic benchmark harness for quantum circuit code-generation evaluation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "QCircuitEval contributors" }]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Typing :: Typed",
+]
+dependencies = [
+  "cirq>=1.6",
+  "cuda-quantum-cu13>=0.14.2",
+  "cudaq>=0.14.2",
+  "matplotlib>=3.8",
+  "networkx>=3.0",
+  "numpy>=2.0",
+  "pennylane>=0.43",
+  "psutil>=7.0",
+  "qiskit>=1.0",
+  "qiskit-aer>=0.15",
+  "requests>=2.31",
+  "scipy>=1.11",
+  "sympy>=1.14",
+  "tabulate>=0.10",
+  "tqdm>=4.67",
+]
+
+[project.optional-dependencies]
+dev = [
+  "coverage[toml]>=7.6",
+  "hatchling>=1.25",
+  "mqt.qcec",
+  "mypy>=1.19",
+  "pre-commit>=4.0",
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "ruff>=0.8.0",
+]
+docs = [
+  "sphinx>=8.1",
+]
+
+[project.urls]
+Homepage = "https://conductorquantum.com/qcircuiteval"
+Documentation = "https://github.com/conductorquantum/QCircuitEval/tree/main/docs"
+Source = "https://github.com/conductorquantum/QCircuitEval"
+Issues = "https://github.com/conductorquantum/QCircuitEval/issues"
+
+[project.scripts]
+qceval = "qceval.cli:main"
+
+# Ship the whole src package (Python + JSON/JSONL assets) with the src/ prefix stripped.
+[tool.hatch.build.targets.wheel]
+only-include = ["src/qceval"]
+sources = ["src"]
+
+# Keep sdists free of local evaluation dumps and other non-source trees.
+[tool.hatch.build.targets.sdist]
+only-include = [
+  "src/qceval",
+  "tests",
+  "ci",
+  "docs",
+  "pyproject.toml",
+  "README.md",
+  "LICENSE",
+  "SECURITY.md",
+  "CODE_OF_CONDUCT.md",
+  "uv.lock",
+]
+
+[tool.uv]
+constraint-dependencies = [
+  "cryptography>=50.0.0",
+  "pillow>=12.3.0",
+  "pyasn1>=0.6.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+  "error",
+]
+markers = [
+  "live: opt-in tests that call external provider APIs",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["qceval"]
+omit = [
+  "src/qceval/__main__.py",
+  # Subprocess workers; exercised via verifier orchestration, not import coverage.
+  "src/qceval/evals/parser/symbolic.py",
+  "src/qceval/frameworks/qiskit/symbolic/*",
+  "src/qceval/semantics/verifiers/_symbolic_worker.py",
+  # Offline generators and corpus tooling (ci/generate_* / audit), not runtime grading.
+  "src/qceval/semantics/_core_contracts.py",
+  "src/qceval/semantics/_target_generators.py",
+  "src/qceval/semantics/core_audit.py",
+  "src/qceval/semantics/corpus.py",
+  # CUDA-Q adaptive QIR parser / translate (CFG-heavy; fixture-driven).
+  "src/qceval/frameworks/cudaq/qir_parser.py",
+  "src/qceval/frameworks/cudaq/qir/*",
+  # CUDA-Q AST const-fold + matrix tables (data-heavy; covered indirectly via executor tests).
+  "src/qceval/frameworks/cudaq/values.py",
+  "src/qceval/frameworks/cudaq/constfold.py",
+  "src/qceval/frameworks/cudaq/matrices.py",
+  # Adaptive CUDA-Q dynamic lowering; covered by dedicated cudaq executor/QIR tests.
+  "src/qceval/frameworks/cudaq/dynamic.py",
+  # Default portfolio wires stub providers; engines need certified/objective assets to score.
+  "src/qceval/semantics/verifiers/approximate.py",
+  "src/qceval/semantics/verifiers/objective.py",
+  # Multiprocess worker isolation; exercised operationally outside unit coverage.
+  "src/qceval/core/runner/workers.py",
+  # Legacy static CUDA-Q replay path retained beside dynamic/QIR executors.
+  "src/qceval/frameworks/cudaq/replay.py",
+  "src/qceval/frameworks/cudaq/replay_*.py",
+  # Optional telemetry sink and symbolic literal helpers (thin adapters).
+  "src/qceval/semantics/telemetry.py",
+  "src/qceval/semantics/verifiers/symbolic_literals.py",
+  # Analytic target catalog (declarative closed forms; size exception).
+  "src/qceval/semantics/verifiers/targets.py",
+  # Dense AST family prover and CLI entry (integration-covered via portfolio/canonical sweeps).
+  "src/qceval/evals/parser/family/*",
+  "src/qceval/cli.py",
+  # Framework lowering adapters (exercised via canonical sweeps; branch-dense).
+  "src/qceval/frameworks/cirq/lowering.py",
+  "src/qceval/frameworks/cirq/adapter.py",
+  "src/qceval/frameworks/cirq/operations.py",
+  "src/qceval/frameworks/cirq/wire_map.py",
+  "src/qceval/frameworks/pennylane/lowering.py",
+  "src/qceval/frameworks/pennylane/adapter.py",
+  "src/qceval/frameworks/pennylane/operations.py",
+  "src/qceval/frameworks/pennylane/wire_map.py",
+  # Analytic distribution catalog (declarative formulas; size exception).
+  "src/qceval/semantics/verifiers/distribution_targets.py",
+  # Framework metadata tables and top-level bench adaptor (thin / table-heavy).
+  "src/qceval/frameworks/cirq/metadata.py",
+  "src/qceval/core/bench.py",
+  "src/qceval/frameworks/cudaq/gates.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 85
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src/qceval"]
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+pretty = true
+show_error_codes = true
+warn_unused_ignores = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src"]
+extend-exclude = ["saved_results", "tests/corpus/behavior_grader"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "RET"]
+ignore = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 9
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

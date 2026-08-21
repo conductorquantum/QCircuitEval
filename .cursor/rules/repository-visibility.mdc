@@ -1,0 +1,12 @@
+---
+description: Require explicit permission for repository visibility changes
+alwaysApply: true
+---
+
+# Repository Visibility Safety
+
+- Never make a repository public, private, or internal without the user's explicit, contemporaneous permission for that exact visibility change.
+- A request to prepare, release, publish, replace, or clean a repository does not authorize changing its visibility.
+- A plan containing a visibility change is not permission to execute it.
+- Before changing visibility, ask for confirmation that names the repository and target visibility, then wait for the user's answer.
+- Treat visibility changes as separate from commits, pushes, releases, and other repository operations.

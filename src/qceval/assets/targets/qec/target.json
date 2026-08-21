@@ -1,0 +1,1132 @@
+{
+  "schema_version": "1",
+  "suite": "qec",
+  "tasks": {
+    "qec01": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec01"
+    },
+    "qec02": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "00": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "01": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "11": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "10": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec02"
+    },
+    "qec03": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec03"
+    },
+    "qec04": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec04"
+    },
+    "qec05": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "00": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "10": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "11": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "01": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec05"
+    },
+    "qec06": {
+      "format": "semantic_target_spec_v1",
+      "kind": "state",
+      "suite": "qec",
+      "target": {
+        "amplitudes": {
+          "000000000": "1/sqrt(8)",
+          "000000111": "1/sqrt(8)",
+          "000111000": "1/sqrt(8)",
+          "000111111": "1/sqrt(8)",
+          "111000000": "1/sqrt(8)",
+          "111000111": "1/sqrt(8)",
+          "111111000": "1/sqrt(8)",
+          "111111111": "1/sqrt(8)"
+        },
+        "type": "exact_state"
+      },
+      "task_id": "qec06"
+    },
+    "qec07": {
+      "format": "semantic_target_spec_v1",
+      "kind": "state",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0
+            ],
+            "state": {
+              "amplitudes": {
+                "0000000": "1/sqrt(8)",
+                "0011110": "1/sqrt(8)",
+                "0101101": "1/sqrt(8)",
+                "0110011": "1/sqrt(8)",
+                "1001011": "1/sqrt(8)",
+                "1010101": "1/sqrt(8)",
+                "1100110": "1/sqrt(8)",
+                "1111000": "1/sqrt(8)"
+              },
+              "type": "exact_state"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "state": {
+              "amplitudes": {
+                "0000111": "1/sqrt(8)",
+                "0011001": "1/sqrt(8)",
+                "0101010": "1/sqrt(8)",
+                "0110100": "1/sqrt(8)",
+                "1001100": "1/sqrt(8)",
+                "1010010": "1/sqrt(8)",
+                "1100001": "1/sqrt(8)",
+                "1111111": "1/sqrt(8)"
+              },
+              "type": "exact_state"
+            }
+          }
+        ],
+        "type": "argument_state_cases"
+      },
+      "task_id": "qec07"
+    },
+    "qec08": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "010": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "011": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "100": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "101": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              5
+            ],
+            "distribution": {
+              "probabilities": {
+                "110": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              6
+            ],
+            "distribution": {
+              "probabilities": {
+                "111": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec08"
+    },
+    "qec09": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              5
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              6
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              5
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              6
+            ],
+            "distribution": {
+              "probabilities": {
+                "0000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec09"
+    },
+    "qec10": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "000000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "000001": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "000011": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "000010": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "000100": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "001100": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              5
+            ],
+            "distribution": {
+              "probabilities": {
+                "001000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              6
+            ],
+            "distribution": {
+              "probabilities": {
+                "010000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              7
+            ],
+            "distribution": {
+              "probabilities": {
+                "110000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              8
+            ],
+            "distribution": {
+              "probabilities": {
+                "100000": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec10"
+    },
+    "qec11": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "00": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "01": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "01": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "01": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "11": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "11": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              5
+            ],
+            "distribution": {
+              "probabilities": {
+                "11": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              6
+            ],
+            "distribution": {
+              "probabilities": {
+                "10": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              7
+            ],
+            "distribution": {
+              "probabilities": {
+                "10": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              8
+            ],
+            "distribution": {
+              "probabilities": {
+                "10": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec11"
+    },
+    "qec12": {
+      "format": "semantic_target_spec_v1",
+      "kind": "distribution",
+      "suite": "qec",
+      "target": {
+        "cases": [
+          {
+            "arguments": [
+              0,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              0,
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "0": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              null
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              0
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              1
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              2
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              3
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          },
+          {
+            "arguments": [
+              1,
+              4
+            ],
+            "distribution": {
+              "probabilities": {
+                "1": "1"
+              },
+              "type": "exact_distribution"
+            }
+          }
+        ],
+        "type": "argument_distribution_cases"
+      },
+      "task_id": "qec12"
+    }
+  }
+}
