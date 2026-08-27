@@ -1,0 +1,39 @@
+{
+  "name": "QCircuitEval GPU",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "../..",
+    "args": {
+      "CUDAQ_IMAGE": "nvcr.io/nvidia/quantum/cuda-quantum:cu13-0.14.2"
+    }
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "runArgs": ["--gpus=all"],
+  "hostRequirements": {
+    "gpu": "optional"
+  },
+  "containerEnv": {
+    "NVIDIA_VISIBLE_DEVICES": "all",
+    "NVIDIA_DRIVER_CAPABILITIES": "compute,utility",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "UV_LINK_MODE": "copy",
+    "UV_PROJECT_ENVIRONMENT": ".venv"
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvironment": true,
+        "ruff.nativeServer": "on"
+      }
+    }
+  }
+}

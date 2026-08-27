@@ -1,0 +1,86 @@
+{
+  "schema_version": "2",
+  "campaign": "full-effort-pass1",
+  "retrieved_at_utc": "2026-08-11T00:00:00Z",
+  "policy": {
+    "benchmark_content_commit": "70c175a340b4abe2cc986988b4044dcafb4d6fe5",
+    "benchmark_output_tokens": 128000,
+    "minimum_uptime_last_1d_percent": 95,
+    "one_endpoint_per_base_model": true,
+    "configuration_count": 28,
+    "shard_count": 112,
+    "logical_request_count": 7840
+  },
+  "models": [
+    {
+      "model_id": "anthropic/claude-fable-5",
+      "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"],
+      "output_limit": {"source": "author_native", "configured_output_tokens": 128000},
+      "reasoning_parameter_names": ["reasoning"],
+      "author_endpoint_tags": ["anthropic"],
+      "authorized_provider_names": ["Anthropic", "Amazon Bedrock", "Google Vertex"],
+      "author_evidence": {
+        "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+        "retrieved_at_utc": "2026-08-11T00:00:00Z",
+        "native_context_tokens": 1000000,
+        "native_max_output_tokens": 128000
+      }
+    },
+    {
+      "model_id": "anthropic/claude-opus-5",
+      "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"],
+      "output_limit": {"source": "author_native", "configured_output_tokens": 128000},
+      "reasoning_parameter_names": ["reasoning"],
+      "author_endpoint_tags": ["anthropic"],
+      "authorized_provider_names": ["Anthropic", "Amazon Bedrock", "Google Vertex"],
+      "author_evidence": {
+        "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+        "retrieved_at_utc": "2026-08-11T00:00:00Z",
+        "native_context_tokens": 1000000,
+        "native_max_output_tokens": 128000
+      }
+    },
+    {
+      "model_id": "openai/gpt-5.6-sol",
+      "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"],
+      "output_limit": {"source": "author_native", "configured_output_tokens": 128000},
+      "reasoning_parameter_names": ["reasoning"],
+      "author_endpoint_tags": ["openai"],
+      "authorized_provider_names": ["OpenAI"],
+      "author_evidence": {
+        "url": "https://developers.openai.com/api/docs/guides/latest-model",
+        "retrieved_at_utc": "2026-08-11T00:00:00Z",
+        "native_context_tokens": 1050000,
+        "native_max_output_tokens": 128000
+      }
+    },
+    {
+      "model_id": "openai/gpt-5.6-terra",
+      "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"],
+      "output_limit": {"source": "author_native", "configured_output_tokens": 128000},
+      "reasoning_parameter_names": ["reasoning"],
+      "author_endpoint_tags": ["openai"],
+      "authorized_provider_names": ["OpenAI"],
+      "author_evidence": {
+        "url": "https://developers.openai.com/api/docs/guides/latest-model",
+        "retrieved_at_utc": "2026-08-11T00:00:00Z",
+        "native_context_tokens": 1050000,
+        "native_max_output_tokens": 128000
+      }
+    },
+    {
+      "model_id": "openai/gpt-5.6-luna",
+      "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"],
+      "output_limit": {"source": "author_native", "configured_output_tokens": 128000},
+      "reasoning_parameter_names": ["reasoning"],
+      "author_endpoint_tags": ["openai"],
+      "authorized_provider_names": ["OpenAI"],
+      "author_evidence": {
+        "url": "https://developers.openai.com/api/docs/guides/latest-model",
+        "retrieved_at_utc": "2026-08-11T00:00:00Z",
+        "native_context_tokens": 1050000,
+        "native_max_output_tokens": 128000
+      }
+    }
+  ]
+}
