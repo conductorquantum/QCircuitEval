@@ -14,11 +14,12 @@ website.
 
 - QCircuitEval's published Core results are already crowded near the top: 7 of 33 published model-and-reasoning configurations score at least 90%.
 - The highest published Core result is 92.67%: 215 verified passes out of 232 assigned framework/task records for `openai/gpt-5.6-sol` at high reasoning effort.
+- That same configuration has the highest full-suite result: 91.07%, or 255 verified passes out of all 280 Core-plus-QEC framework/task records.
 - The next two published Core results are 92.24% (214/232) and 91.81% (213/232), both from other reasoning settings of the same model.
 - Gemini 3.1 Pro Preview and Grok 4.6 each reach 90.95% (211/232) on the published Core suite.
 - Those are strict Pass@1 rates: one generated answer, one attempt, and every assigned failure stays in the denominator.
 - The repository publishes 9,240 individual records from 33 configurations across 10 models, with 280 records in each configuration.
-- This top-end clustering is direct evidence that the current Core task set is becoming saturated as a discriminator among leading systems.
+- This top-end clustering is consistent with describing the current Core task set as saturated among leading systems; “saturated” is Joel's interpretation of the scores, not a separate ceiling analysis in the repository.
 - The repository does **not** establish why scores are high. Training-data contamination is a plausible interpretation, but it is not measured or demonstrated by the checked-in results.
 - Releasing the prompts and benchmark under the MIT License lets researchers train and evaluate smaller models without pretending that secrecy restores a saturated benchmark's value.
 - The more reusable contribution is the grading system: versioned contracts, independently derived targets, framework-neutral Program IR, exact verifier engines, anti-shortcut requirements, and reproducible evidence.
@@ -126,7 +127,7 @@ website.
 - Core and QEC scores are reported separately because they use different verification models.
 - The strongest published QEC result is 87.5% (42/48), below the strongest Core result of 92.67% (215/232).
 - Framework implementations of the same task are correlated observations, so the reporting protocol says confidence intervals should cluster on `(suite, task_id)`.
-- The repository supports the statement that leading-model Core scores are top-heavy or saturated.
+- The repository directly supports saying that seven Core configurations exceed 90%; describing that clustering as “saturation” is a positioning inference.
 - The repository does not contain a contamination study, training-corpus audit, or memorization experiment. Do not present contamination as a measured cause.
 - The repository does not contain a head-to-head QuanBench+ regrade, confusion matrix, or measured false-positive/false-negative rate.
 - We can say the grader is designed to reduce false positives from output-only shortcuts and canonical-answer matching; we cannot attach a comparative false-positive percentage from this repository.
